@@ -1,6 +1,7 @@
 /* Presenter shared runtime — deck-side styles.
    Hides speaker notes on screen, styles the S-key notes panel and toasts,
-   and prints the notes so the deck doubles as a handout. */
+   prints the notes so the deck doubles as a handout, and carries the whole
+   slide-transition system for decks compiled with data-nav="anim". */
 
 .speaker-notes { display: none; }
 
@@ -30,7 +31,150 @@
 }
 #presenter-toast.show { opacity: 1; }
 
+/* ============================================================
+   Animated navigation mode — data-nav="anim"
+   Slides are stacked; the runtime drives entrances/exits with
+   the tr-* classes below, and the veil for bubble/wipe.
+   The #deck[data-nav] selector outweighs theme .slide rules.
+   ============================================================ */
+
+#deck[data-nav="anim"] {
+  position: relative; height: 100vh; width: 100vw;
+  overflow: hidden; scroll-snap-type: none; perspective: 1600px;
+}
+#deck[data-nav="anim"] .slide {
+  position: absolute; inset: 0; min-height: 0;
+  opacity: 0; pointer-events: none; overflow-y: auto;
+  transform: none; transition: none;
+}
+#deck[data-nav="anim"] .slide.active { opacity: 1; pointer-events: auto; }
+#deck[data-nav="anim"] .slide.leaving { opacity: 1; z-index: 2; pointer-events: none; }
+#deck[data-nav="anim"] .slide.entering { z-index: 3; }
+
+/* ---- fade — soft crossfade with a gentle rise ---- */
+#deck[data-nav="anim"] .entering.tr-fade { animation: pr-fade-in .52s cubic-bezier(.22,.8,.36,1) both; }
+#deck[data-nav="anim"] .leaving.tr-fade  { animation: pr-fade-out .52s ease both; }
+@keyframes pr-fade-in  { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes pr-fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+/* ---- push — the new slide pushes the old one off horizontally ---- */
+#deck[data-nav="anim"] .entering.tr-push { animation: pr-push-in .64s cubic-bezier(.25,.85,.3,1) both; }
+#deck[data-nav="anim"] .leaving.tr-push  { animation: pr-push-out .64s cubic-bezier(.25,.85,.3,1) both; }
+#deck[data-nav="anim"] .entering.tr-push[data-dir="back"] { animation-name: pr-push-in-back; }
+#deck[data-nav="anim"] .leaving.tr-push[data-dir="back"]  { animation-name: pr-push-out-back; }
+@keyframes pr-push-in       { from { opacity: 1; transform: translateX(100%); } to { opacity: 1; transform: none; } }
+@keyframes pr-push-out      { from { opacity: 1; transform: none; } to { opacity: 1; transform: translateX(-100%); } }
+@keyframes pr-push-in-back  { from { opacity: 1; transform: translateX(-100%); } to { opacity: 1; transform: none; } }
+@keyframes pr-push-out-back { from { opacity: 1; transform: none; } to { opacity: 1; transform: translateX(100%); } }
+
+/* ---- rise — vertical push, like a smooth elevator ---- */
+#deck[data-nav="anim"] .entering.tr-rise { animation: pr-rise-in .64s cubic-bezier(.25,.85,.3,1) both; }
+#deck[data-nav="anim"] .leaving.tr-rise  { animation: pr-rise-out .64s cubic-bezier(.25,.85,.3,1) both; }
+#deck[data-nav="anim"] .entering.tr-rise[data-dir="back"] { animation-name: pr-rise-in-back; }
+#deck[data-nav="anim"] .leaving.tr-rise[data-dir="back"]  { animation-name: pr-rise-out-back; }
+@keyframes pr-rise-in       { from { opacity: 1; transform: translateY(100%); } to { opacity: 1; transform: none; } }
+@keyframes pr-rise-out      { from { opacity: 1; transform: none; } to { opacity: 1; transform: translateY(-100%); } }
+@keyframes pr-rise-in-back  { from { opacity: 1; transform: translateY(-100%); } to { opacity: 1; transform: none; } }
+@keyframes pr-rise-out-back { from { opacity: 1; transform: none; } to { opacity: 1; transform: translateY(100%); } }
+
+/* ---- zoom — old slide flies toward the viewer, new one scales up ---- */
+#deck[data-nav="anim"] .entering.tr-zoom { animation: pr-zoom-in .62s cubic-bezier(.2,.8,.3,1) both; }
+#deck[data-nav="anim"] .leaving.tr-zoom  { animation: pr-zoom-out .62s cubic-bezier(.5,0,.8,.4) both; }
+#deck[data-nav="anim"] .entering.tr-zoom[data-dir="back"] { animation-name: pr-zoom-in-back; }
+#deck[data-nav="anim"] .leaving.tr-zoom[data-dir="back"]  { animation-name: pr-zoom-out-back; }
+@keyframes pr-zoom-in       { from { opacity: 0; transform: scale(.9); }  to { opacity: 1; transform: none; } }
+@keyframes pr-zoom-out      { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(1.14); } }
+@keyframes pr-zoom-in-back  { from { opacity: 0; transform: scale(1.14); } to { opacity: 1; transform: none; } }
+@keyframes pr-zoom-out-back { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(.9); } }
+
+/* ---- flip — page turn in 3D; out first, in on a delay ---- */
+#deck[data-nav="anim"] .entering.tr-flip { animation: pr-flip-in .4s cubic-bezier(.2,.7,.3,1) .36s both; }
+#deck[data-nav="anim"] .leaving.tr-flip  { animation: pr-flip-out .38s cubic-bezier(.6,.05,.8,.4) both; }
+#deck[data-nav="anim"] .entering.tr-flip[data-dir="back"] { animation-name: pr-flip-in-back; }
+#deck[data-nav="anim"] .leaving.tr-flip[data-dir="back"]  { animation-name: pr-flip-out-back; }
+@keyframes pr-flip-out      { from { opacity: 1; transform: rotateY(0); } to { opacity: 0; transform: rotateY(-72deg); } }
+@keyframes pr-flip-in       { from { opacity: 0; transform: rotateY(72deg); } to { opacity: 1; transform: rotateY(0); } }
+@keyframes pr-flip-out-back { from { opacity: 1; transform: rotateY(0); } to { opacity: 0; transform: rotateY(72deg); } }
+@keyframes pr-flip-in-back  { from { opacity: 0; transform: rotateY(-72deg); } to { opacity: 1; transform: rotateY(0); } }
+
+/* ---- blur — the old slide melts out of focus, the new one sharpens ---- */
+#deck[data-nav="anim"] .entering.tr-blur { animation: pr-blur-in .68s ease both; }
+#deck[data-nav="anim"] .leaving.tr-blur  { animation: pr-blur-out .68s ease both; }
+@keyframes pr-blur-in  { from { opacity: 0; filter: blur(16px); transform: scale(1.02); } to { opacity: 1; filter: blur(0); transform: none; } }
+@keyframes pr-blur-out { from { opacity: 1; filter: blur(0); } to { opacity: 0; filter: blur(16px); } }
+
+/* ---- stack — the new slide is dealt on top like a card ---- */
+#deck[data-nav="anim"] .entering.tr-stack { animation: pr-stack-in .64s cubic-bezier(.2,.9,.3,1) both; }
+#deck[data-nav="anim"] .leaving.tr-stack  { animation: pr-stack-under .64s ease both; }
+#deck[data-nav="anim"] .entering.tr-stack[data-dir="back"] { animation-name: pr-stack-under-back; z-index: 2; }
+#deck[data-nav="anim"] .leaving.tr-stack[data-dir="back"]  { animation-name: pr-stack-out-back; z-index: 3; }
+@keyframes pr-stack-in         { from { opacity: 1; transform: translateY(103%); } 70% { transform: translateY(-1.2%); } to { opacity: 1; transform: none; } }
+@keyframes pr-stack-under      { from { opacity: 1; transform: none; } to { opacity: .5; transform: scale(.94); } }
+@keyframes pr-stack-out-back   { from { opacity: 1; transform: none; } to { opacity: 1; transform: translateY(103%); } }
+@keyframes pr-stack-under-back { from { opacity: .5; transform: scale(.94); } to { opacity: 1; transform: none; } }
+
+/* ---- iris — the new slide is revealed through an expanding circle ---- */
+#deck[data-nav="anim"] .entering.tr-iris { animation: pr-iris-in .78s cubic-bezier(.3,.6,.2,1) both; }
+#deck[data-nav="anim"] .leaving.tr-iris  { animation: pr-iris-dim .78s ease both; }
+@keyframes pr-iris-in  { from { opacity: 1; clip-path: circle(0% at var(--tx,50%) var(--ty,50%)); }
+                         to   { opacity: 1; clip-path: circle(142% at var(--tx,50%) var(--ty,50%)); } }
+@keyframes pr-iris-dim { from { opacity: 1; } 70% { opacity: 1; } to { opacity: 0; } }
+
+/* ---- cut + reduced motion: instant ---- */
+#deck[data-nav="anim"] .entering.tr-cut, #deck[data-nav="anim"] .leaving.tr-cut { animation: none; }
+
+/* ============================================================
+   The veil — full-screen overlay used by bubble and wipe.
+   bubble: an accent-colored circle grows from the click point,
+   swallows the page, then pops away over the next slide.
+   wipe: a gradient curtain sweeps across, swapping behind it.
+   Themes set --veil / --veil-grad; sane fallbacks below.
+   ============================================================ */
+
+#presenter-veil { position: fixed; inset: 0; z-index: 150; pointer-events: none; display: none; overflow: hidden; }
+#presenter-veil.cover, #presenter-veil.reveal { display: block; }
+
+#presenter-veil .v-circle {
+  position: absolute; left: var(--tx, 50%); top: var(--ty, 82%);
+  width: 100vmax; height: 100vmax; margin: -50vmax 0 0 -50vmax;
+  border-radius: 50%; transform: scale(0);
+  background: var(--veil-grad, var(--veil, #7c3aed));
+  display: none;
+}
+#presenter-veil.bubble .v-circle { display: block; }
+#presenter-veil.bubble.cover .v-circle  { animation: pr-veil-grow .48s cubic-bezier(.6,.05,.6,.9) both; }
+#presenter-veil.bubble.reveal .v-circle { animation: pr-veil-pop .5s cubic-bezier(.16,.7,.4,1) both; }
+@keyframes pr-veil-grow { from { transform: scale(0); } to { transform: scale(3); } }
+@keyframes pr-veil-pop  { from { transform: scale(3); opacity: 1; } to { transform: scale(3.3); opacity: 0; } }
+
+#presenter-veil .v-band {
+  position: absolute; inset: 0; transform: translateX(-102%);
+  background: var(--veil-grad, var(--veil, #7c3aed));
+  display: none;
+}
+#presenter-veil.wipe .v-band { display: block; }
+#presenter-veil.wipe.cover .v-band  { animation: pr-band-cover .42s cubic-bezier(.55,.08,.45,.9) both; }
+#presenter-veil.wipe.reveal .v-band { animation: pr-band-reveal .42s cubic-bezier(.55,.1,.45,.92) both; }
+#presenter-veil.wipe.cover.back .v-band  { animation-name: pr-band-cover-back; }
+#presenter-veil.wipe.reveal.back .v-band { animation-name: pr-band-reveal-back; }
+@keyframes pr-band-cover       { from { transform: translateX(-102%); } to { transform: translateX(0); } }
+@keyframes pr-band-reveal      { from { transform: translateX(0); } to { transform: translateX(102%); } }
+@keyframes pr-band-cover-back  { from { transform: translateX(102%); } to { transform: translateX(0); } }
+@keyframes pr-band-reveal-back { from { transform: translateX(0); } to { transform: translateX(-102%); } }
+
+@media (prefers-reduced-motion: reduce) {
+  #deck[data-nav="anim"] .slide, #presenter-veil .v-circle, #presenter-veil .v-band {
+    animation-duration: .01ms !important; animation-delay: 0ms !important;
+  }
+}
+
 @media print {
+  #deck[data-nav="anim"] { height: auto; overflow: visible; perspective: none; }
+  #deck[data-nav="anim"] .slide {
+    position: static; opacity: 1; pointer-events: auto;
+    min-height: 100vh; page-break-after: always;
+  }
+  #presenter-veil { display: none !important; }
   .speaker-notes {
     display: block; margin-top: 1.4rem; padding-top: .7rem;
     border-top: 1px solid #bbb; color: #444; font-size: .85rem; line-height: 1.5;

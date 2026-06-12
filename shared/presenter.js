@@ -1,17 +1,24 @@
 /* Presenter shared runtime — deck-side controller.
-   Contract: #deck[data-nav="fade"|"scroll"] containing .slide sections, one
-   optional <aside class="speaker-notes"> per slide. Optional chrome, wired by id
-   when present: #prev #next #dots #cur #total #bar #hint #remote.
+   Contract: #deck[data-nav="fade"|"scroll"|"anim"] containing .slide sections,
+   one optional <aside class="speaker-notes"> per slide. Optional chrome, wired
+   by id when present: #prev #next #dots #cur #total #bar #hint #remote.
    Keys: arrows/space/PgUp/PgDn/Home/End navigate · S notes panel · F fullscreen ·
    R speaker remote. The remote (remote.html, next to this file) talks over
-   postMessage and reconnects on its own if either window reloads. */
+   postMessage and reconnects on its own if either window reloads.
+
+   anim mode: slides are stacked and changes play a transition. The deck's
+   data-transition is the default; a slide's own data-transition is how that
+   slide ENTERS (going back plays the inverse of the transition that led here).
+   bubble and wipe run on the #presenter-veil overlay; bubble grows from the
+   last click/tap position. prefers-reduced-motion collapses everything. */
 (function () {
   'use strict';
 
   var deck = document.getElementById('deck');
   if (!deck) return;
 
-  var mode = deck.getAttribute('data-nav') === 'scroll' ? 'scroll' : 'fade';
+  var navAttr = deck.getAttribute('data-nav');
+  var mode = navAttr === 'scroll' ? 'scroll' : navAttr === 'anim' ? 'anim' : 'fade';
   var slides = Array.prototype.slice.call(deck.querySelectorAll('.slide'));
   if (!slides.length) return;
 
@@ -72,10 +79,82 @@
     panel.querySelector('.body').innerHTML = notesOf(current) || '<em>No notes for this slide.</em>';
   }
 
+  /* ---- transitions (anim mode) ---- */
+  var TR = { // name → [enter/exit ms, veil reveal ms (two-phase only)]
+    cut: [0, 0], fade: [540, 0], push: [660, 0], rise: [660, 0], zoom: [640, 0],
+    flip: [790, 0], blur: [700, 0], stack: [660, 0], iris: [800, 0],
+    wipe: [440, 440], bubble: [500, 520]
+  };
+  var VEIL_KIND = { bubble: 1, wipe: 1 };
+  var deckDefault = deck.getAttribute('data-transition') || 'fade';
+  if (!TR[deckDefault]) deckDefault = 'fade';
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var animating = false;
+
+  var veil = null;
+  if (mode === 'anim') {
+    veil = document.createElement('div');
+    veil.id = 'presenter-veil';
+    veil.innerHTML = '<span class="v-circle"></span><span class="v-band"></span>';
+    document.body.appendChild(veil);
+    // bubble grows from where the presenter last clicked/tapped
+    document.addEventListener('pointerdown', function (e) {
+      veil.style.setProperty('--tx', (e.clientX / window.innerWidth * 100).toFixed(1) + '%');
+      veil.style.setProperty('--ty', (e.clientY / window.innerHeight * 100).toFixed(1) + '%');
+      deck.style.setProperty('--tx', (e.clientX / window.innerWidth * 100).toFixed(1) + '%');
+      deck.style.setProperty('--ty', (e.clientY / window.innerHeight * 100).toFixed(1) + '%');
+    });
+  }
+
+  function transOf(i) {
+    var t = slides[i].getAttribute('data-transition');
+    return t && TR[t] ? t : deckDefault;
+  }
+
+  function clearTransClasses(el) {
+    el.className = el.className.replace(/\s*\b(entering|leaving|tr-[a-z]+)\b/g, '');
+    el.removeAttribute('data-dir');
+  }
+
+  function animateTo(i) {
+    var dir = i > current ? 'fwd' : 'back';
+    // forward: the entering slide's transition; back: undo the leaving slide's
+    var name = dir === 'fwd' ? transOf(i) : transOf(current);
+    if (reduced) name = 'cut';
+    var enter = slides[i], leave = slides[current];
+
+    if (name === 'cut' || TR[name][0] === 0) { setActive(i); return; }
+    animating = true;
+
+    if (VEIL_KIND[name]) { // two-phase: cover the page, swap behind it, reveal
+      var coverMs = TR[name][0], revealMs = TR[name][1];
+      veil.className = name + ' cover' + (dir === 'back' ? ' back' : '');
+      setTimeout(function () {
+        setActive(i);
+        // force a restart of the veil animation between phases
+        void veil.offsetWidth;
+        veil.className = name + ' reveal' + (dir === 'back' ? ' back' : '');
+        setTimeout(function () { veil.className = ''; animating = false; }, revealMs + 40);
+      }, coverMs + 10);
+      return;
+    }
+
+    setActive(i);
+    leave.classList.add('leaving', 'tr-' + name);
+    leave.setAttribute('data-dir', dir);
+    enter.classList.add('entering', 'tr-' + name);
+    enter.setAttribute('data-dir', dir);
+    setTimeout(function () {
+      clearTransClasses(leave);
+      clearTransClasses(enter);
+      animating = false;
+    }, TR[name][0] + 60);
+  }
+
   /* ---- navigation ---- */
   function setActive(i) {
     current = i;
-    if (mode === 'fade') {
+    if (mode !== 'scroll') {
       slides.forEach(function (s, k) { s.classList.toggle('active', k === i); });
     }
     dots.forEach(function (d, k) { d.classList.toggle('active', k === i); });
@@ -88,7 +167,9 @@
 
   function go(i) {
     i = clamp(i);
+    if (i === current) return;
     if (mode === 'scroll') slides[i].scrollIntoView({ behavior: 'smooth' });
+    else if (mode === 'anim') { if (!animating) animateTo(i); }
     else setActive(i);
   }
 

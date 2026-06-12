@@ -48,15 +48,16 @@ is created in the **current directory** and the built deck in an
    the slides as a story (e.g. problem → approach → result), one idea per slide,
    sized to the duration/audience budget.
 4. Write the outline to `./<slug>.md` **in Slidedown** — the deterministic
-   presentation language specified in `README.md` (in this folder; element
-   availability matrix included). Translate the user's content into Slidedown
-   elements, applying every rule below — audience, duration budget, diagrams,
-   speaker notes, quality. Then build the deck by **running the compiler**:
+   presentation language specified in `README.md` (in this folder; every element
+   works in both themes). Translate the user's content into Slidedown elements,
+   applying every rule below — audience, duration budget, element choice,
+   transitions, diagrams, speaker notes, quality. Then build the deck by
+   **running the compiler**:
    `node <skill-folder>/compiler/compile.js ./<slug>.md`. It writes
-   `./output/<slug>/` (`index.html` + `style.css` + `shared/`). The compiler is
-   the only thing that writes deck html — **never hand-write or post-edit it**.
-   If the build fails, fix the md and re-run; the errors name the slide and
-   element.
+   `./output/<slug>/` (`index.html` + `style.css` + `shared/`, plus `assets/`
+   when slides embed local images). The compiler is the only thing that writes
+   deck html — **never hand-write or post-edit it**. If the build fails, fix the
+   md and re-run; the errors name the slide and element.
 5. Open both for the user side by side — the outline in the editor
    (`open -a "Rider" ./<slug>.md`) and the rendered deck in the browser
    (`open ./output/<slug>/index.html`) — and **report both paths** plus the
@@ -114,14 +115,15 @@ window the remote isn't paired with.
 
 The outline is written in **Slidedown**, the deterministic presentation language
 specified in `README.md` (in this folder). Read that spec before writing or
-editing an outline — it defines the front-matter, slide flags, inline marks, and
-every element with its per-theme availability. The shape, at a glance:
+editing an outline — it defines the front-matter, slide flags, label lines,
+inline marks, every element, and the transitions. The shape, at a glance:
 
 ```
 ---
 title: Deck title — one-line throughline
 theme: zastrpay
 brand: Topbar tag / brand text
+transition: rise
 audience: Development Team
 duration: 30
 ---
@@ -131,17 +133,34 @@ Eyebrow: kicker · 01
 Lead paragraph.
 Notes: speaker notes — talking points, transition to the next slide.
 
-## Another slide
+## Another slide {bubble}
+Tip: label lines like this render as visible callouts.
 ::: flow
 - ① | Service A | receives the event
 -* ② | Service B | the step to dwell on
 :::
 ```
 
+**Every element works in both themes**, and the language is forgiving: element
+names, slide flags, labels and theme names resolve through aliases and a fuzzy
+matcher (`::: pills`, `::: important note`, `Warning: …`, `{thanks}` all land).
+When the skill writes or edits an outline it still uses the **canonical names**
+from `README.md` — forgiveness is for humans typing quickly, not an excuse for
+sloppy generated md. If a user writes intent the compiler can't resolve (the
+build error names the closest element), translate it to the nearest element on
+sync rather than bouncing the error back to them.
+
 Compilation is deterministic: the same md always produces the same html. Never
-free-style html — express content through Slidedown elements; if an element is
-missing in the chosen theme, the compiler error lists what is available. Use the
+free-style html — express content through Slidedown elements. Use the
 `::: html` escape hatch only for custom SVG diagrams.
+
+**Element choice.** Pick the element that matches the concept, not always the
+same three: roadmaps/milestones → `timeline`; before/after or any
+two-way choice → `versus`; one percentage that matters → `gauge` or `badge`;
+several KPIs → `metrics`; quotes/testimonials → `quote`; Q&A or objections →
+`faq`; people/owners → `team`; real code for dev audiences → `code`;
+warnings/tips/key points → callout tones (`Tip:` / `Warning:` / `Important:`).
+Variety keeps a deck colorful — but still one idea per slide.
 
 ### Inline directives — `[[ ... ]]`
 
@@ -207,13 +226,13 @@ visual reference of what each element looks like. Whatever the theme, the deck
 must read as a focused deck, **never a marketing landing page** (no hero banners,
 feature-card walls, or logo strips).
 
-- **Purple** — horizontal pagination (fade; arrow keys). Lavender background,
-  Poppins, violet→magenta gradient accents; strongest at bars/splits, badges,
-  formulas, report and comparison tables. Good for technical decks.
-- **Zastrpay** — vertical pagination (scroll-snap). Green brand palette, Inter,
-  light/dark surfaces; strongest at cards, steps, checks, panels, metric tiles.
-  The official zastrpay logo is injected by the compiler on the title, top bars,
-  and closing. Good for company-facing decks.
+- **Purple** — lavender background, Poppins, violet→magenta gradient accents,
+  white cards, a deep-indigo `{dark}` surface. Default pagination: fade.
+  Good for technical decks.
+- **Zastrpay** — green brand palette, Inter, light/dark surfaces. Default
+  pagination: vertical scroll-snap. The official zastrpay logo is injected by
+  the compiler on the title, top bars, and closing. Good for company-facing
+  decks.
 - **Image-Inspired** — the user supplies an image. Analyse it and derive a
   palette and font *inspired by* it (not a copy). Compile with whichever built-in
   theme's structure fits best, then overwrite the output's `style.css` with a
@@ -221,20 +240,44 @@ feature-card walls, or logo strips).
   stay identical so the compiled markup keeps working). This re-skin is the one
   artifact the compiler doesn't own; keep it legible.
 
-The element-per-theme availability matrix lives in `README.md` — check it before
-choosing elements for a slide.
+Every Slidedown element is available in both themes — pick by concept, not by
+theme. Each theme paints the elements (and the transition veil) in its own
+palette.
+
+## Transitions
+
+Slide transitions are part of the language (see `README.md`): a `transition:`
+front-matter default plus optional per-slide overrides (`{bubble}` flag or
+`Transition:` line). With no `transition:` the deck keeps the theme's classic
+behavior (purple fades, zastrpay scrolls). Taste rules when the skill writes an
+outline:
+
+- Ask or infer from tone: calm business deck → `rise` or `fade`; energetic or
+  demo-day → `push`, `zoom`, or `mix`.
+- Accent sparingly: give at most 1–2 pivotal slides (the throughline reveal, a
+  section divider, the closing) a standout entrance like `bubble`, `iris`, or
+  `wipe`. A deck where every slide shows off reads as noise.
+- `mix` deals a deterministic rotation across slides — offer it when the user
+  asks for "more dynamic", otherwise prefer one default + accents.
+- Company-Wide decks stay calm; Development Team decks can take `push`/`zoom`.
 
 ## Shared runtime (`shared/` in this folder)
 
 One runtime serves every theme. Never fork or inline it — copy the whole folder
 into the output and link it relatively.
 
-- `presenter.js` — deck controller: navigation in two modes (`data-nav="fade"`
-  Purple-style, `data-nav="scroll"` Zastrpay-style), chrome wiring by element id,
-  keyboard (arrows/space/PgUp/PgDn/Home/End), `S` notes panel, `F` fullscreen,
-  `R` speaker remote; talks to the remote over postMessage.
+- `presenter.js` — deck controller: navigation in three modes (`data-nav="fade"`
+  Purple-style, `data-nav="scroll"` Zastrpay-style, `data-nav="anim"` whenever
+  the deck declares transitions), chrome wiring by element id, keyboard
+  (arrows/space/PgUp/PgDn/Home/End), `S` notes panel, `F` fullscreen,
+  `R` speaker remote; talks to the remote over postMessage. In anim mode it
+  runs the transition engine (slide enter/exit classes plus the bubble/wipe
+  veil, which grows from the last click point).
 - `presenter.css` — hides `.speaker-notes` on screen, styles the notes panel and
-  toasts, prints the notes so the deck doubles as a handout.
+  toasts, prints the notes so the deck doubles as a handout, and carries the
+  anim-mode layout, all transition keyframes, the veil, and the
+  reduced-motion/print fallbacks. Veil colors come from the theme's
+  `--veil`/`--veil-grad` variables.
 - `remote.html` / `remote.js` / `remote.css` — the speaker remote: a separate
   window showing the current slide's notes, an up-next line, a clickable list of
   all slides, prev/next, and a fullscreen toggle for the deck. It pings the deck
@@ -243,10 +286,11 @@ into the output and link it relatively.
   deck shows a toast pointing at `F`.)
 
 Deck contract the generated HTML must keep: a `#deck` element with the right
-`data-nav`, containing `.slide` sections, one `<aside class="speaker-notes">` per
-slide, and the optional chrome ids `prev`, `next`, `dots`, `cur`, `total`, `bar`,
-`hint`, `remote` (the runtime skips any that are absent — both reference decks
-show the intended markup per theme).
+`data-nav` (plus `data-transition` defaults/overrides in anim mode), containing
+`.slide` sections, one `<aside class="speaker-notes">` per slide, and the
+optional chrome ids `prev`, `next`, `dots`, `cur`, `total`, `bar`, `hint`,
+`remote` (the runtime skips any that are absent — both reference decks show the
+intended markup per theme).
 
 ## Diagrams
 
@@ -254,9 +298,10 @@ Add a diagram whenever a flow, sequence, or relationship is easier to see than t
 read — integrations, communication and event flows, architecture, processes,
 domains. Adapt the altitude: name real services/events for the Development Team;
 collapse to a few friendly, business-labelled boxes (3–5 nodes) for Company-Wide.
-Use the `::: flow` element first; when a flow genuinely isn't enough (branching,
-sequence lanes), put an inline SVG in a `::: html` block. Diagrams must be
-faithful to the real system — don't invent architecture.
+Use the `::: flow` element first (`::: timeline` when the dimension is time);
+when a flow genuinely isn't enough (branching, sequence lanes), put an inline
+SVG in a `::: html` block. Diagrams must be faithful to the real system — don't
+invent architecture.
 
 ## Speaker notes
 
@@ -285,6 +330,8 @@ hidden aside and the shared runtime does the rest (`S` notes panel on the deck,
   - `index.html` — the slide markup; links the css/js below with relative paths;
     fonts via CDN.
   - `style.css` — the theme stylesheet, copied from `themes/<theme>.css`.
+  - `assets/` — local images referenced by `::: image` slides, copied in so the
+    folder stays portable (only present when used).
   - `shared/` — verbatim copy of this skill's shared runtime: `presenter.js`,
     `presenter.css`, `remote.html`, `remote.js`, `remote.css`.
 
