@@ -1,0 +1,13 @@
+name: example
+aliases: [sample]
+description: A single line of monospace example text.
+content: parse
+template: |
+  <div class="example">{{{content}}}</div>
+styles: |
+  .example {
+    background: color-mix(in srgb, var(--color-accent) 7%, var(--color-card));
+    border-radius: 14px; padding: 14px 18px; margin-top: 18px;
+    font-family: var(--font-mono); font-size: 15px; color: var(--color-ink);
+  }
+  .example strong { color: var(--color-accent-2); }

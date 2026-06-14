@@ -1,0 +1,373 @@
+---
+title: Slidedown — every component
+theme: falling-star
+transition: slide
+brand: Slidedown
+logo:
+  light: ./assets/logo.svg
+  dark: ./assets/logo-dark.svg
+author: Presenter skill
+---
+
+[@slide title dark glow] Slidedown
+[@subtitle] One language, two themes, forty-five components
+[@note] This deck exercises every component; in real decks keep one idea per slide. [/@note]
+
+[logo size:20x* align:left /]
+
+A [text color:accent weight:semibold]forgiving[/text], deterministic language — write `.sd`, compile, present.
+
+[meta]
+  - **Author** · Presenter skill
+  - **Components** · 45
+  - **Themes** · aurora · verde
+[/meta]
+
+[group align:center]
+  [chips]
+    [chip color:accent icon:check-circle]Tokens are the contract[/chip]
+    [chip color:info icon:bolt]Logicless templates[/chip]
+    [chip color:ok icon:sparkles]Deterministic[/chip]
+  [/chips]
+[/group]
+
+[@slide] Structure — flow & callout
+[@subtitle] How a deck flows, end to end
+[@note] Walk the flow left to right; dwell on Compile — that's the deterministic step. Press S to see these notes; arrows to move. [/@note]
+
+[flow scale:2]
+  [node icon:pencil title:Author] write the .sd [/node]
+  [node icon:cog title:Compile focal] five stages [/node]
+  [node icon:play title:Present] static html [/node]
+[/flow]
+
+[callout tone:tip align:center] Mark a node `focal` to make it the anchor. [/callout]
+
+[@slide] Sequence & lists
+[@subtitle] Ordered steps beside checked lists
+
+[columns]
+  [column size:50]
+    [steps]
+      [step title:Register] discover + validate [/step]
+      [step title:Render] AST to HTML [/step]
+      [step title:Publish] write output [/step]
+    [/steps]
+  [/column]
+  [column size:50]
+    [checks]
+      [check title:Deterministic] same in, same out [/check]
+      [check title:Self-contained] zero deps [/check]
+      [check title:Forgiving] nearest-match errors [/check]
+      [check title:Themeable] tokens drive it [/check]
+    [/checks]
+  [/column]
+[/columns]
+
+[@slide dark] Choices — cards
+[@subtitle] One option per card
+
+[cards cols:3]
+  [card icon:cube title:Tokens] Data, validated against a schema. [/card]
+  [card icon:star title:Components state:win pill:Core animated] Manifest + template + CSS. [/card]
+  [card icon:swatch title:Themes] A value-set each, light & dark. [/card]
+[/cards]
+
+[@slide] Compare & decide
+[@subtitle] Weigh the options, mark the winner
+
+[versus]
+  [side label:Before title:"Hand-written HTML"]
+    - slow to edit
+    - not diffable
+  [/side]
+  [side label:After title:Slidedown prefer]
+    - write what you mean
+    - deterministic
+  [/side]
+[/versus]
+
+[compare]
+  | Option | Fast | Diffable | Chosen |
+  | *Slidedown | y | y | y |
+  | Slide exports | y | n | n |
+[/compare]
+
+[@slide] Group & sequence
+[@subtitle] Panels in parallel, phases over time
+
+[panels]
+  [panel label:Today title:"What we have"]
+    - Two themes, each light & dark
+    - 45 components
+  [/panel]
+  [panel label:Next title:"What can come"]
+    - More themes
+    - An asset pipeline
+  [/panel]
+[/panels]
+
+[timeline]
+  [phase when:v1 title:Engine] five stages [/phase]
+  [phase when:v2 title:Library state:current animated] 45 components [/phase]
+  [phase when:v3 title:More state:future] your ideas [/phase]
+[/timeline]
+
+[@slide] Milestones
+[@subtitle] An alternating, boxed timeline
+
+[milestones]
+  [milestone label:"Day 1"] Draft the deck in plain `.sd` [/milestone]
+  [milestone label:"Day 2" current animated] Compile — five deterministic stages [/milestone]
+  [milestone label:"Day 3"] Review it live in the browser [/milestone]
+  [milestone label:"Day 4"] Hand off the static folder [/milestone]
+  [milestone label:"Day 5"] Edit and recompile, byte-for-byte [/milestone]
+[/milestones]
+
+[@slide dark] By the numbers
+[@subtitle] Metrics, a gauge and progress bars
+[@note] Lead with "zero dependencies" — the number that surprises people. The gauge is "would present again". [/@note]
+
+[columns]
+  [column size:55]
+    [metrics]
+      [metric value:5] stages [/metric]
+      [metric value:45] components [/metric]
+      [metric value:0] deps [/metric]
+    [/metrics]
+    [gauge]
+      [dial value:88] would present again [/dial]
+    [/gauge]
+  [/column]
+  [column size:45]
+    [bars]
+      [bar value:100 animated] Deterministic [/bar]
+      [bar value:92] Coverage [/bar]
+    [/bars]
+    [split]
+      [bar value:73] Covered vs not [/bar]
+    [/split]
+  [/column]
+[/columns]
+
+[@slide dark] KPIs at a glance
+[@subtitle] Value, target, movement
+
+[scorecard]
+  [kpi value:"$1.2M" label:"ARR" change:"+18%" dir:up]
+  [kpi value:"4.7%" label:"Churn" change:"-0.6pt" dir:down tone:ok]
+  [kpi value:"92" label:"NPS" target:"/100" change:"+5" dir:up]
+  [kpi value:"38" label:"Decks shipped" change:"+12" dir:up]
+[/scorecard]
+
+[@slide] Movement & health
+[@subtitle] One headline, and the workstreams behind it
+
+[columns]
+  [column size:40]
+    [delta value:"+34%" change:"vs last quarter" dir:up label:Adoption accent animated]
+    Growth across every team.
+    [/delta]
+  [/column]
+  [column size:60]
+    [status]
+      [item state:ok title:Compiler] all five stages green [/item]
+      [item state:warn title:Themes owner:Design] dark-mode polish pending [/item]
+      [item state:risk title:Docs owner:DX] behind on component pages [/item]
+      [item state:done title:Charts] shipped this week [/item]
+    [/status]
+  [/column]
+[/columns]
+
+[@slide glow] One idea
+[@subtitle] The whole pitch in a sentence
+
+[statement kicker:"Why Slidedown"]
+Decks should be written, not dragged.
+[/statement]
+
+[@slide dark] Pricing
+[@subtitle] Three plans, one engine
+
+[pricing]
+  [plan name:Starter price:Free]
+    - One theme
+    - All 45 components
+    - Community support
+  [/plan]
+  [plan name:Team price:"$12" period:"/mo" featured animated badge:Popular]
+    - Both themes
+    - Speaker remote
+    - Shared assets
+  [/plan]
+  [plan name:Enterprise price:Custom]
+    - Custom themes
+    - SSO & audit
+    - Priority support
+  [/plan]
+[/pricing]
+
+[@slide] Hierarchy & cycle
+[@subtitle] Two ways to show structure
+
+[columns]
+  [column size:46]
+    [pyramid]
+      [layer title:Vision] why we build [/layer]
+      [layer title:Strategy] where we play [/layer]
+      [layer title:Execution] what ships [/layer]
+      [layer title:Foundation] tokens & compiler [/layer]
+    [/pyramid]
+  [/column]
+  [column size:54]
+    [cycle]
+      [stage title:Author] write .sd [/stage]
+      [stage title:Compile] five stages [/stage]
+      [stage title:Review] in the browser [/stage]
+      [stage title:Ship] static folder [/stage]
+    [/cycle]
+  [/column]
+[/columns]
+
+[@slide dark] Activity
+[@subtitle] Commits per day, four weeks
+
+[heatmap]
+  [hrow label:Mon][cell level:1][cell level:2][cell level:4][cell level:3][/hrow]
+  [hrow label:Tue][cell level:0][cell level:3][cell level:2][cell level:4][/hrow]
+  [hrow label:Wed][cell level:2][cell level:4][cell level:3][cell level:1][/hrow]
+  [hrow label:Thu][cell level:3][cell level:2][cell level:4][cell level:2][/hrow]
+  [hrow label:Fri][cell level:4][cell level:3][cell level:1][cell level:0][/hrow]
+[/heatmap]
+
+[@slide] API & architecture
+[@subtitle] The surface and the stack
+
+[columns]
+  [column size:50]
+    [api]
+      [endpoint method:GET path:"/decks"] list decks [/endpoint]
+      [endpoint method:POST path:"/compile"] build a deck [/endpoint]
+      [endpoint method:PUT path:"/themes/:id"] update a theme [/endpoint]
+      [endpoint method:DELETE path:"/decks/:id"] remove a deck [/endpoint]
+    [/api]
+  [/column]
+  [column size:50]
+    [architecture]
+      [tier label:Author]
+        [box icon:pencil] .sd source [/box]
+      [/tier]
+      [tier label:Build]
+        [box icon:cog] compiler [/box]
+        [box icon:swatch] themes [/box]
+      [/tier]
+      [tier label:Output]
+        [box icon:document-text] index.html [/box]
+        [box icon:photo] assets [/box]
+      [/tier]
+    [/architecture]
+  [/column]
+[/columns]
+
+[@slide] Charts — adoption
+[@subtitle] A bar per team
+
+[text weight:semibold align:center]Adoption by team[/text]
+
+[bar-chart size:96 align:center]
+  [point label:Platform value:34]
+  [point label:Payments value:58]
+  [point label:Risk value:41]
+  [point label:Data value:72]
+[/bar-chart]
+
+[@slide] Charts — trend
+[@subtitle] Month over month
+
+[text weight:semibold align:center]Decks shipped per month[/text]
+
+[line-chart size:96 align:center]
+  [point label:Jan value:8]
+  [point label:Feb value:17]
+  [point label:Mar value:26]
+  [point label:Apr value:38]
+  [point label:May value:52]
+  [point label:Jun value:64]
+[/line-chart]
+
+[@slide] Pie chart
+[@subtitle] Each slice takes the spotlight
+
+[text weight:semibold align:center]Where prep time goes[/text]
+
+[pie-chart animated]
+  [point label:Writing value:45]
+  [point label:Reviewing value:25]
+  [point label:Design value:20]
+  [point label:Polish value:10]
+[/pie-chart]
+
+[@slide] Evidence
+[@subtitle] Tables, formulas and code
+
+[columns]
+  [column size:42]
+    [badge value:100%] Slidedown surface [/badge]
+    [table head:accent]
+      | Stage | Output |
+      | parse | AST |
+      | render | HTML |
+    [/table]
+  [/column]
+  [column size:58]
+    [formula] risk = impact^{2} × (1 − **coverage**)^{3} [/formula]
+    [example] covered / total = **73%** [/example]
+    [code lang:bash title:build]
+      node compiler/slidedown.js examples/demo.sd
+    [/code]
+  [/column]
+[/columns]
+
+[@slide dark] People & questions
+[@subtitle] The team, and the usual questions
+
+[team]
+  [person avatar:NB role:Platform note:author] Nima Boobard [/person]
+  [person avatar:PS role:Compiler note:does the rest] Presenter Skill [/person]
+[/team]
+
+[faq]
+  [qa q:"Is it deterministic?"] Yes — same .sd, same html. [/qa]
+  [qa q:"Must I memorize names?"] No — nearest-match errors guide you. [/qa]
+[/faq]
+
+[quote by:"Leonardo da Vinci"]
+Simplicity is the ultimate sophistication.
+[/quote]
+
+[@slide] Media & the escape hatch
+[@subtitle] Images, icons and raw HTML
+
+[columns]
+  [column size:50]
+    [image src:./assets/sample.svg alt:"sample" caption:"a framed image" /]
+  [/column]
+  [column size:50]
+    [icon name:sparkles size:64 color:accent /]
+
+    [html]
+      <svg viewBox="0 0 220 120" width="100%"><circle cx="60" cy="60" r="42" fill="none" stroke="#49c297" stroke-width="10"/><rect x="120" y="22" width="76" height="76" rx="12" fill="#158664"/></svg>
+    [/html]
+  [/column]
+[/columns]
+
+[@slide closing dark glow] Thank you
+[@subtitle] Markdown in, a deck out
+
+[icon name:check-circle size:56 color:accent /]
+
+[cta]
+Edit · compile · present — the HTML is always generated, never written.
+[/cta]
+
+[text align:center color:muted]Two themes · 45 components · one language.[/text]

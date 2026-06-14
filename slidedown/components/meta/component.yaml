@@ -1,0 +1,13 @@
+name: meta
+aliases: [byline]
+description: The title-slide byline row — a Markdown list rendered horizontally.
+content: parse
+template: |
+  <div class="meta">{{{content}}}</div>
+styles: |
+  .meta { margin-top: 36px; }
+  .meta .points { display: flex; flex-wrap: wrap; gap: 12px 36px; margin-top: 0; font-size: 15px; color: var(--color-muted); }
+  .cover .meta .points { justify-content: center; }
+  .meta .mk { display: none; }
+  .meta .points li { display: block; }
+  .meta strong { color: var(--color-ink); }

@@ -1,0 +1,29 @@
+name: api
+aliases: [endpoints, routes]
+description: A list of API endpoints — a colour-coded method pill, a monospace path on a tinted chip, and a description, each on its own card. Methods colour by verb: GET (blue), POST (green), PUT/PATCH (amber), DELETE (red).
+content: parse
+template: |
+  <div class="api">{{{content}}}</div>
+children:
+  endpoint:
+    aliases: [route, ep]
+    content: parse
+    props:
+      method:
+        type: text
+        default: GET
+      path:
+        type: text
+        default: ""
+    template: |
+      <div class="ep"><span class="ep-method m-{{method}}">{{method}}</span><code class="ep-path">{{path}}</code><span class="ep-desc">{{{content}}}</span></div>
+styles: |
+  .api { display: grid; gap: 12px; margin-top: 28px; text-align: left; }
+  .ep { display: grid; grid-template-columns: 84px auto 1fr; align-items: center; gap: 16px; background: var(--color-card); border-radius: 12px; box-shadow: var(--shadow-sm); padding: 13px 18px; }
+  .ep-method { text-align: center; font-size: 12px; font-weight: 800; letter-spacing: .04em; padding: 6px 0; border-radius: var(--radius-pill); color: #fff; background: var(--color-muted); }
+  .ep-path { font-family: var(--font-mono); font-size: 14px; color: var(--color-ink); background: color-mix(in srgb, var(--color-accent) 10%, transparent); padding: 5px 11px; border-radius: 7px; justify-self: start; }
+  .ep-desc { color: var(--color-muted); font-size: 14px; }
+  .m-GET, .m-get { background: var(--color-info); }
+  .m-POST, .m-post { background: var(--color-ok); }
+  .m-PUT, .m-put, .m-PATCH, .m-patch { background: var(--color-warn); }
+  .m-DELETE, .m-delete { background: var(--color-danger); }

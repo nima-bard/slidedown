@@ -1,0 +1,34 @@
+name: status
+aliases: [health, rag]
+description: Red / amber / green status rows — each item is a card with a coloured state pill, a name, a note and an optional owner. States: ok or done (green), warn (amber), risk or blocked (red), info (blue).
+content: parse
+template: |
+  <div class="status">{{{content}}}</div>
+children:
+  item:
+    aliases: [row, line]
+    content: parse
+    props:
+      state:
+        type: enum
+        values: [ok, done, warn, risk, blocked, info]
+        default: ok
+      title:
+        type: text
+        default: ""
+      owner:
+        type: text
+        default: ""
+    template: |
+      <div class="st-row st-{{state}}"><span class="st-badge">{{state}}</span><span class="st-name">{{title}}</span><span class="st-note">{{{content}}}</span>{{#owner}}<span class="st-owner">{{owner}}</span>{{/owner}}</div>
+styles: |
+  .status { display: grid; gap: 12px; margin-top: 28px; text-align: left; }
+  .st-row { display: flex; align-items: center; gap: 14px; background: var(--color-card); border-radius: 12px; box-shadow: var(--shadow-sm); border-left: 4px solid var(--st-tone, var(--color-muted)); padding: 15px 20px; }
+  .st-badge { flex: none; min-width: 82px; text-align: center; font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--st-tone, var(--color-muted)); background: color-mix(in srgb, var(--st-tone, var(--color-muted)) 16%, transparent); padding: 5px 12px; border-radius: var(--radius-pill); }
+  .st-name { font-weight: 700; color: var(--color-ink); }
+  .st-note { flex: 1; color: var(--color-muted); font-size: 15px; }
+  .st-owner { flex: none; font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--color-muted); background: color-mix(in srgb, var(--color-ink) 7%, transparent); padding: 4px 11px; border-radius: var(--radius-pill); }
+  .st-ok, .st-done { --st-tone: var(--color-ok); }
+  .st-warn { --st-tone: var(--color-warn); }
+  .st-risk, .st-blocked { --st-tone: var(--color-danger); }
+  .st-info { --st-tone: var(--color-info); }

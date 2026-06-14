@@ -1,0 +1,45 @@
+# aurora — a violet theme, with light and dark modes.
+font:
+  base: "'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif"
+  mono: "'SFMono-Regular', Consolas, monospace"
+gradient:
+  accent: "linear-gradient(120deg, #7c3aed 0%, #c026d3 100%)"
+radius:
+  card: "24px"
+  pill: "999px"
+  chip: "14px"
+space:
+  line: "1.5"
+  gap: "22px"
+
+color:                # mode-invariant brand / semantic
+  accent: "#7c3aed"
+  accent-2: "#c026d3"
+  on-accent: "#ffffff"
+  ok: "#16a34a"
+  warn: "#f59e0b"
+  info: "#2563eb"
+  danger: "#ef4444"
+  deep: "#1e1733"
+
+light:
+  color:
+    surface: "linear-gradient(135deg, #ece9fe 0%, #e7ecfb 45%, #e2effb 100%)"
+    ink: "#2b2350"
+    muted: "#857fa6"
+    line: "#ece9f6"
+    card: "#ffffff"
+  shadow:
+    card: "0 28px 60px -22px rgba(70,45,120,.45)"
+    sm: "0 14px 30px -16px rgba(70,45,120,.35)"
+
+dark:
+  color:
+    surface: "linear-gradient(135deg, #231b46 0%, #321d56 55%, #421740 100%)"
+    ink: "#ffffff"
+    muted: "#b9b0d9"
+    line: "rgba(255,255,255,.16)"
+    card: "#2c2350"
+  shadow:
+    card: "0 28px 60px -22px rgba(0,0,0,.55)"
+    sm: "0 14px 30px -16px rgba(0,0,0,.45)"

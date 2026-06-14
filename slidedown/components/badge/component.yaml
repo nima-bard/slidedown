@@ -1,0 +1,17 @@
+name: badge
+aliases: [big-number]
+description: One big number — the figure the room should remember.
+content: parse
+props:
+  value:
+    type: text
+template: |
+  <div class="badge"><span class="n">{{value}}</span><span class="l">{{{content}}}</span></div>
+styles: |
+  .badge {
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
+    min-width: 200px; min-height: 200px; padding: 28px; border-radius: 36px; margin-top: 30px;
+    background: var(--gradient-accent); color: var(--color-on-accent); box-shadow: var(--shadow-card);
+  }
+  .badge .n { font-size: clamp(46px, 4.6vw, 72px); font-weight: 700; line-height: 1; }
+  .badge .l { font-size: 13px; letter-spacing: .07em; text-transform: uppercase; opacity: .9; margin-top: 10px; text-align: center; line-height: 1.35; }

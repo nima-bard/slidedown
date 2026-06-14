@@ -1,0 +1,23 @@
+name: faq
+aliases: [qa, questions]
+description: A question / answer list.
+content: parse
+template: |
+  <div class="faq">{{{content}}}</div>
+children:
+  qa:
+    content: parse
+    props:
+      q:
+        type: text
+    template: |
+      <div class="qa"><div class="q"><span class="qm">?</span>{{q}}</div><div class="a">{{{content}}}</div></div>
+styles: |
+  .faq { display: grid; gap: 14px; margin-top: 32px; text-align: left; }
+  .qa { background: var(--color-card); border-radius: 18px; box-shadow: var(--shadow-sm); padding: 18px 22px; }
+  .qa .q { display: flex; gap: 12px; align-items: baseline; font-weight: 600; font-size: 17px; }
+  .qm {
+    flex: none; width: 26px; height: 26px; border-radius: 8px; background: var(--gradient-accent); color: var(--color-on-accent);
+    display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; transform: translateY(4px);
+  }
+  .qa .a { margin-top: 8px; color: var(--color-muted); font-size: 15px; line-height: 1.55; padding-left: 38px; }

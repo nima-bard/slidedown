@@ -1,0 +1,38 @@
+name: scorecard
+aliases: [kpis, scoreboard]
+description: A grid of KPI tiles — each shows a value, an optional target, and a movement (arrow + change), like a compact dashboard. (Reuses the arrow styling from `delta`.) For one headline number use `delta`; for plain figures use `metrics`.
+content: parse
+template: |
+  <div class="scorecard">{{{content}}}</div>
+children:
+  kpi:
+    aliases: [stat, score]
+    content: none
+    props:
+      value:
+        type: text
+        default: ""
+      label:
+        type: text
+        default: ""
+      target:
+        type: text
+        default: ""
+      change:
+        type: text
+        default: ""
+      dir:
+        type: enum
+        values: [up, down, flat]
+        default: up
+      tone:
+        type: enum
+        values: [ok, warn, danger, accent]
+    template: |
+      <div class="kpi delta-{{dir}}{{#tone}} dtone-{{tone}}{{/tone}}">{{#label}}<span class="kpi-label">{{label}}</span>{{/label}}<div class="kpi-value">{{value}}{{#target}}<span class="kpi-target">{{target}}</span>{{/target}}</div>{{#change}}<div class="delta-change"><span class="delta-arrow"></span><span>{{change}}</span></div>{{/change}}</div>
+styles: |
+  .scorecard { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; margin-top: 32px; text-align: left; }
+  .kpi { background: var(--color-card); border-radius: var(--radius-card); box-shadow: var(--shadow-sm); padding: 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+  .kpi-label { font-size: 13px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--color-muted); }
+  .kpi-value { font-size: clamp(28px, 3.6vw, 44px); font-weight: 800; line-height: 1; color: var(--color-ink); }
+  .kpi-target { font-size: 15px; font-weight: 600; color: var(--color-muted); margin-left: 6px; }

@@ -1,0 +1,48 @@
+name: pricing
+aliases: [plans, tiers]
+description: Side-by-side pricing plans for a slide (no buttons — it's a deck, not a landing page) — each a card with a name, price and feature list. Flag one plan `featured` to lift it, add a `badge` (e.g. "Popular"), and `animated` for the shine sweep.
+content: parse
+template: |
+  <div class="pricing">{{{content}}}</div>
+children:
+  plan:
+    aliases: [tier, pkg]
+    content: parse
+    listIcon: check
+    props:
+      name:
+        type: text
+        default: ""
+      price:
+        type: text
+        default: ""
+      period:
+        type: text
+        default: ""
+      badge:
+        type: text
+        default: ""
+      featured:
+        type: flag
+      animated:
+        type: flag
+    template: |
+      <div class="plan{{#featured}} featured{{/featured}}{{#animated}} animated{{/animated}}">{{#badge}}<span class="plan-badge">{{badge}}</span>{{/badge}}{{#name}}<span class="plan-name">{{name}}</span>{{/name}}<div class="plan-price">{{price}}{{#period}}<span class="plan-period">{{period}}</span>{{/period}}</div><div class="plan-features">{{{content}}}</div></div>
+styles: |
+  .pricing { display: flex; gap: 22px; align-items: stretch; margin-top: 34px; text-align: left; }
+  .plan { flex: 1 1 0; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 14px; background: var(--color-card); border-radius: var(--radius-card); box-shadow: var(--shadow-sm); padding: 26px 24px; }
+  .plan.featured { box-shadow: var(--shadow-card); outline: 2px solid var(--color-accent); outline-offset: -2px; }
+  .plan-badge { align-self: flex-start; background: var(--gradient-accent); color: var(--color-on-accent); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 5px 12px; border-radius: var(--radius-pill); }
+  .plan-name { font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--color-muted); }
+  .plan-price { font-size: clamp(32px, 4vw, 46px); font-weight: 800; line-height: 1; color: var(--color-ink); }
+  .plan.featured .plan-price { color: var(--color-accent); }
+  .plan-period { font-size: 16px; font-weight: 600; color: var(--color-muted); margin-left: 4px; }
+  .plan-features { flex: 1; }
+  .plan-features .points { margin-top: 4px; gap: 11px; font-size: 15px; }
+  /* `animated` — the same shine sweep the cards use (sd-card-sweep is bundled with cards) */
+  .plan.animated::after {
+    content: ""; position: absolute; top: 0; left: -65%; width: 55%; height: 100%; pointer-events: none; z-index: 2;
+    background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, .5) 50%, transparent 100%);
+    transform: skewX(-18deg); animation: sd-card-sweep 2.6s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) { .plan.animated::after { display: none; } }

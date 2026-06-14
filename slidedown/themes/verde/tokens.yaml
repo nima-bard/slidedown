@@ -1,0 +1,45 @@
+# verde — the brand-green theme, with light and dark modes.
+font:
+  base: "'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif"
+  mono: "ui-monospace, 'SFMono-Regular', Consolas, monospace"
+gradient:
+  accent: "linear-gradient(130deg, #158664 0%, #24a67d 55%, #49c297 100%)"
+radius:
+  card: "22px"
+  pill: "999px"
+  chip: "12px"
+space:
+  line: "1.5"
+  gap: "20px"
+
+color:                # mode-invariant brand / semantic
+  accent: "#158664"
+  accent-2: "#49c297"
+  on-accent: "#ffffff"
+  ok: "#158664"
+  warn: "#efb700"
+  info: "#3493a9"
+  danger: "#d2455a"
+  deep: "#25252f"
+
+light:
+  color:
+    surface: "#f6f6f8"
+    ink: "#1c1c26"
+    muted: "#6b6b8f"
+    line: "#e4e6ec"
+    card: "#ffffff"
+  shadow:
+    card: "0 18px 44px -20px rgba(28,28,38,.28)"
+    sm: "0 8px 22px -14px rgba(28,28,38,.35)"
+
+dark:
+  color:
+    surface: "#1c1c26"
+    ink: "#eef0f4"
+    muted: "#9aa0b2"
+    line: "rgba(255,255,255,.10)"
+    card: "#25252f"
+  shadow:
+    card: "0 18px 40px -22px rgba(0,0,0,.6)"
+    sm: "0 10px 26px -16px rgba(0,0,0,.5)"

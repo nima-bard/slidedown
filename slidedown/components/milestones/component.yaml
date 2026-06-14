@@ -1,0 +1,51 @@
+name: milestones
+aliases: [chronology, milestone-track]
+description: An alternating timeline — labelled cards sit above and below a horizontal track, each tied to a node by a connector. Mark one milestone `current` to highlight its node and card; `animated` adds the same shine sweep the cards use. (For a simpler single-row track, see `timeline`.)
+content: parse
+template: |
+  <div class="milestones">{{{content}}}</div>
+children:
+  milestone:
+    aliases: [stop, point]
+    content: parse
+    props:
+      label:
+        type: text
+        default: ""
+      current:
+        type: flag
+      animated:
+        type: flag
+    template: |
+      <div class="ms-item{{#current}} current{{/current}}{{#animated}} animated{{/animated}}"><div class="ms-box">{{#label}}<span class="ms-label">{{label}}</span>{{/label}}<div class="ms-desc">{{{content}}}</div></div><span class="ms-node"></span></div>
+styles: |
+  .milestones { --ms-gap: 30px; position: relative; display: flex; align-items: stretch; gap: 0 30px; min-height: 340px; margin-top: 40px; }
+  /* the horizontal track, behind the nodes */
+  .milestones::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 4px; transform: translateY(-50%); background: var(--color-accent); border-radius: 2px; z-index: 0; }
+
+  .ms-item { position: relative; flex: 1 1 0; min-width: 0; display: grid; grid-template-rows: 1fr 0 1fr; }
+  /* connector from the node out to its card — direction alternates by position */
+  .ms-item::before { content: ""; position: absolute; left: 50%; transform: translateX(-50%); width: 2px; background: var(--color-accent); z-index: 1; }
+  .ms-item:nth-child(odd)::before  { bottom: 50%; height: var(--ms-gap); }
+  .ms-item:nth-child(even)::before { top: 50%;    height: var(--ms-gap); }
+
+  .ms-box { position: relative; width: 100%; text-align: center; background: var(--color-card); border: 1.5px solid color-mix(in srgb, var(--color-accent) 38%, var(--color-line)); border-radius: 10px; padding: 16px 18px; }
+  .ms-item:nth-child(odd) .ms-box  { grid-row: 1; align-self: end;   margin-bottom: var(--ms-gap); }
+  .ms-item:nth-child(even) .ms-box { grid-row: 3; align-self: start; margin-top: var(--ms-gap); }
+  .ms-label { display: block; font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 6px; }
+  .ms-desc { font-size: clamp(13px, 1.2vw, 15px); color: var(--color-ink); line-height: 1.45; }
+
+  .ms-node { grid-row: 2; justify-self: center; align-self: center; width: 22px; height: 22px; border-radius: 50%; background: var(--color-surface); border: 3px solid var(--color-accent); z-index: 2; }
+
+  /* `current` — the highlighted milestone: filled node with a ring, accented card */
+  .ms-item.current .ms-node { width: 26px; height: 26px; background: var(--color-accent); border-color: var(--color-accent); box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-accent) 24%, transparent); }
+  .ms-item.current .ms-box { border-color: var(--color-accent); border-width: 2px; background: color-mix(in srgb, var(--color-accent) 12%, var(--color-card)); box-shadow: var(--shadow-sm); }
+
+  /* `animated` — the same shine sweep the cards use (sd-card-sweep is bundled with cards) */
+  .ms-item.animated .ms-box { overflow: hidden; }
+  .ms-item.animated .ms-box::after {
+    content: ""; position: absolute; top: 0; left: -65%; width: 55%; height: 100%; pointer-events: none; z-index: 2;
+    background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, .55) 50%, transparent 100%);
+    transform: skewX(-18deg); animation: sd-card-sweep 2.6s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) { .ms-item.animated .ms-box::after { display: none; } }

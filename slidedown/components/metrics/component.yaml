@@ -1,0 +1,22 @@
+name: metrics
+aliases: [stats, kpis]
+description: A row of big-value stat tiles.
+content: parse
+template: |
+  <div class="metrics">{{{content}}}</div>
+children:
+  metric:
+    content: parse
+    props:
+      value:
+        type: text
+    template: |
+      <div class="metric"><span class="v">{{value}}</span><span class="k">{{{content}}}</span></div>
+styles: |
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; margin-top: 32px; }
+  .metric { background: var(--color-card); border-radius: 18px; padding: 24px 14px; text-align: center; box-shadow: var(--shadow-sm); }
+  .metric .v {
+    font-size: clamp(26px, 2.6vw, 38px); font-weight: 700; line-height: 1.1; display: block;
+    background: var(--gradient-accent); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .metric .k { font-size: 13px; color: var(--color-muted); margin-top: 7px; font-weight: 500; display: block; }

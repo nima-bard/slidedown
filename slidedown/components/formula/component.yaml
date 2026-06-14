@@ -1,0 +1,13 @@
+name: formula
+aliases: [math]
+description: A dark maths card. Use ^{...} for a superscript and **bold** for the accent.
+content: parse
+template: |
+  <div class="formula">{{{content}}}</div>
+styles: |
+  .formula {
+    font-family: var(--font-mono); font-size: clamp(23px, 3vw, 40px); background: #1e1733; color: #fff;
+    border-radius: 18px; padding: 28px 34px; margin-top: 32px; box-shadow: var(--shadow-card); letter-spacing: .5px;
+  }
+  .formula strong { color: var(--color-accent-2); font-weight: 600; }
+  .formula sup { color: color-mix(in srgb, var(--color-accent-2) 70%, #fff); font-size: .65em; }

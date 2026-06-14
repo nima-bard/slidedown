@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Falling Star — a Slidedown theme</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="viewer/presenter.css">
+</head>
+<body>
+<div class="deck" id="deck" data-nav="anim" data-transition="fade">
+<section class="slide cover glow active">
+<div class="inner">
+<h1 class="s-title">Falling Star</h1><p class="s-sub">A starry-night theme — gold on deep indigo, with a shooting star</p><div class="statement"><span class="stmt-kicker">same engine, new sky</span><p class="stmt-text">A theme is just
+<span class="text w-bold" style="color:var(--color-accent);">data and one CSS file</span>
+.</p></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Choices — cards</h2><p class="s-sub">One option per card</p><div class="cards g3"><div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
+<path d="M12 12v9M12 12l8-4.5M12 12 4 7.5"/></svg></span><h3>Tokens</h3><p>Data, validated against a schema.</p></div>
+<div class="card win animated"><span class="pill">Core</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.85-4.25 4.15 1 5.8L12 16.9l-5.25 2.7 1-5.8L3.5 9.65l5.9-.85L12 3.5Z"/></svg></span><h3>Components</h3><p>Manifest + template + CSS.</p></div>
+<div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+<circle cx="8.5" cy="8.5" r="1.5"/>
+<circle cx="15.5" cy="8.5" r="1.5"/>
+<circle cx="12" cy="14.5" r="1.5"/></svg></span><h3>Themes</h3><p>A value-set each, light &amp; dark.</p></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">By the numbers</h2><p class="s-sub">Glass tiles floating over the night</p><div class="scorecard"><div class="kpi delta-up"><span class="kpi-label">Components</span><div class="kpi-value">45</div><div class="delta-change"><span class="delta-arrow"></span><span>+10</span></div></div>
+<div class="kpi delta-up"><span class="kpi-label">Themes</span><div class="kpi-value">2</div><div class="delta-change"><span class="delta-arrow"></span><span>+1</span></div></div>
+<div class="kpi delta-up"><span class="kpi-label">Dependencies</span><div class="kpi-value">0</div></div></div>
+<div class="callout tone-tip"><div class="co-body">The shooting star streaks across whichever slide is on screen.</div></div>
+</div>
+</section>
+<section class="slide dark">
+<div class="inner">
+<h2 class="s-title">A deeper night</h2><p class="s-sub">dark mode just goes darker — still starry</p><div class="columns"><div class="column" style="flex:0 0 55%;"><div class="sd-box" style="width:96%;"><div class="chart"><svg class="chart-svg" viewBox="0 0 640 300" role="img" aria-hidden="true"><line class="chart-axis" x1="18" y1="260" x2="622" y2="260" stroke-width="2"/><rect class="chart-bar" x="58.5" y="169.22" width="70" height="90.78" rx="6" fill="var(--color-accent)"/><text class="chart-val" x="93.5" y="161.22" text-anchor="middle" font-size="16">18</text><text class="chart-lbl" x="93.5" y="284" text-anchor="middle" font-size="15">Mon</text><rect class="chart-bar" x="209.5" y="88.52" width="70" height="171.48" rx="6" fill="var(--color-accent-2)"/><text class="chart-val" x="244.5" y="80.52" text-anchor="middle" font-size="16">34</text><text class="chart-lbl" x="244.5" y="284" text-anchor="middle" font-size="15">Tue</text><rect class="chart-bar" x="360.5" y="123.83" width="70" height="136.17" rx="6" fill="var(--color-info)"/><text class="chart-val" x="395.5" y="115.83" text-anchor="middle" font-size="16">27</text><text class="chart-lbl" x="395.5" y="284" text-anchor="middle" font-size="15">Wed</text><rect class="chart-bar" x="511.5" y="28" width="70" height="232" rx="6" fill="var(--color-ok)"/><text class="chart-val" x="546.5" y="20" text-anchor="middle" font-size="16">46</text><text class="chart-lbl" x="546.5" y="284" text-anchor="middle" font-size="15">Thu</text></svg></div></div></div>
+<div class="column" style="flex:0 0 45%;"><div class="delta delta-up delta-acc animated"><span class="delta-label">Delight</span><div class="delta-value">+34%</div><div class="delta-change"><span class="delta-arrow"></span><span>vs the old sky</span></div><div class="delta-note">same components, new mood</div></div></div></div>
+</div>
+</section>
+<section class="slide closing glow">
+<div class="inner">
+<h2 class="s-title">Make a wish</h2><p class="s-sub">pick the theme, write, present</p><div class="cta">Set <code>theme: falling-star</code> and compile — the sky comes free.</div>
+</div>
+</section>
+</div>
+<div class="brand"><span>Slidedown</span></div><div class="count"><b id="cur">01</b> / <span id="total">00</span></div><div class="bar-wrap"><span id="bar"></span></div><div class="hint" id="hint"><span><kbd>&larr;</kbd><kbd>&rarr;</kbd> navigate</span><span><kbd>S</kbd> notes</span><span><kbd>F</kbd> fullscreen</span><span><kbd>R</kbd> remote</span></div>
+<script src="viewer/presenter.js"></script>
+</body>
+</html>

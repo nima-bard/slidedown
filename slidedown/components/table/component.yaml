@@ -1,0 +1,16 @@
+name: table
+aliases: [report]
+description: A report table. First column is the row name. Content is a Markdown table.
+content: table
+props:
+  head:
+    type: token
+    default: ""
+template: |
+  <div class="tablewrap"{{#head}} style="--th: var(--color-{{head}})"{{/head}}>{{{content}}}</div>
+styles: |
+  .tablewrap { background: var(--color-card); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: 16px 28px; margin-top: 32px; }
+  .report { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .report th { text-align: left; color: var(--th, var(--color-muted)); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; padding: 0 14px 12px; }
+  .report td { padding: 13px 14px; border-top: 1px solid var(--color-line); vertical-align: middle; }
+  .report .name { font-weight: 600; }

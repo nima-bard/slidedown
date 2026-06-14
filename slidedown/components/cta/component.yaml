@@ -1,0 +1,13 @@
+name: cta
+aliases: [takeaway, call-to-action]
+description: The closing message box — a bold, accent-filled panel.
+content: parse
+template: |
+  <div class="cta">{{{content}}}</div>
+styles: |
+  .cta {
+    background: var(--gradient-accent); border-radius: var(--radius-card); padding: 24px 36px; margin-top: 34px;
+    font-size: clamp(18px, 2vw, 24px); font-weight: 600; color: var(--color-on-accent); line-height: 1.45;
+    box-shadow: var(--shadow-card);
+  }
+  .cta strong { color: var(--color-on-accent); }

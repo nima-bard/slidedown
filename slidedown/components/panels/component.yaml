@@ -1,0 +1,28 @@
+name: panels
+aliases: [groups, twopanel]
+description: Grouped dark panels, each with a label, heading and its own content.
+content: parse
+template: |
+  <div class="panels">{{{content}}}</div>
+children:
+  panel:
+    content: parse
+    listIcon: check
+    props:
+      label:
+        type: text
+        default: ""
+      title:
+        type: text
+    template: |
+      <div class="panel">{{#label}}<span class="label">{{label}}</span>{{/label}}<h3>{{title}}</h3>{{{content}}}</div>
+styles: |
+  .panels { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 32px; text-align: left; }
+  .panel { border-radius: var(--radius-card); padding: 24px 26px; background: var(--color-deep); box-shadow: var(--shadow-card); }
+  .panel .label {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 4px;
+    background: var(--gradient-accent); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .panel h3 { font-size: 20px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+  .panel .points { margin-top: 0; font-size: 15px; color: rgba(255, 255, 255, .78); }
+  .panel .mk { color: var(--color-accent-2); }

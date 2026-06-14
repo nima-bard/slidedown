@@ -1,0 +1,58 @@
+name: delta
+aliases: [trend, movement]
+description: One big number with its movement — an up / down / flat arrow and a change figure shown as a tinted pill, coloured by direction (up = ok, down = danger) or an explicit `tone`. Flag `accent` to fill the card with the theme gradient and `animated` for the shine sweep. For a single headline metric; for a grid use `scorecard`.
+content: parse
+props:
+  value:
+    type: text
+    default: ""
+  change:
+    type: text
+    default: ""
+  dir:
+    type: enum
+    values: [up, down, flat]
+    default: up
+  tone:
+    type: enum
+    values: [ok, warn, danger, accent]
+  label:
+    type: text
+    default: ""
+  accent:
+    type: flag
+  animated:
+    type: flag
+template: |
+  <div class="delta delta-{{dir}}{{#tone}} dtone-{{tone}}{{/tone}}{{#accent}} delta-acc{{/accent}}{{#animated}} animated{{/animated}}">{{#label}}<span class="delta-label">{{label}}</span>{{/label}}<div class="delta-value">{{value}}</div>{{#change}}<div class="delta-change"><span class="delta-arrow"></span><span>{{change}}</span></div>{{/change}}{{#content}}<div class="delta-note">{{{content}}}</div>{{/content}}</div>
+styles: |
+  .delta { position: relative; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; background: var(--color-card); border-radius: var(--radius-card); box-shadow: var(--shadow-sm); padding: 32px 30px; }
+  .delta-label { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--color-muted); }
+  .delta-value { font-size: clamp(40px, 6vw, 74px); font-weight: 800; line-height: 1; letter-spacing: -.02em; color: var(--color-ink); }
+  .delta-change { display: inline-flex; align-items: center; gap: 7px; font-size: clamp(14px, 1.4vw, 17px); font-weight: 700; color: var(--d-tone, var(--color-muted)); background: color-mix(in srgb, var(--d-tone, var(--color-muted)) 15%, transparent); padding: 6px 14px; border-radius: var(--radius-pill); }
+  .delta-note { font-size: 14px; color: var(--color-muted); max-width: 32ch; }
+  /* direction sets the default tone; an explicit `tone` (dtone-*) overrides it */
+  .delta-up { --d-tone: var(--color-ok); }
+  .delta-down { --d-tone: var(--color-danger); }
+  .delta-flat { --d-tone: var(--color-muted); }
+  .dtone-ok { --d-tone: var(--color-ok); }
+  .dtone-warn { --d-tone: var(--color-warn); }
+  .dtone-danger { --d-tone: var(--color-danger); }
+  .dtone-accent { --d-tone: var(--color-accent); }
+  .delta-arrow { display: inline-block; }
+  .delta-up .delta-arrow { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid var(--d-tone); }
+  .delta-down .delta-arrow { width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--d-tone); }
+  .delta-flat .delta-arrow { width: 11px; height: 3px; border-radius: 2px; background: var(--d-tone); }
+  /* `accent` — fill the whole card with the theme gradient; text + pill flip to on-accent */
+  .delta.delta-acc { background: var(--gradient-accent); box-shadow: var(--shadow-card); --d-tone: var(--color-on-accent); }
+  .delta.delta-acc .delta-label { color: var(--color-on-accent); opacity: .82; }
+  .delta.delta-acc .delta-value { color: var(--color-on-accent); }
+  .delta.delta-acc .delta-note { color: var(--color-on-accent); opacity: .82; }
+  /* `animated` — the same shine sweep the cards use (sd-card-sweep is bundled with cards) */
+  .delta.animated { overflow: hidden; }
+  .delta.animated::after {
+    content: ""; position: absolute; top: 0; left: -65%; width: 55%; height: 100%; pointer-events: none; z-index: 2;
+    background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, .5) 50%, transparent 100%);
+    transform: skewX(-18deg); animation: sd-card-sweep 2.6s ease-in-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) { .delta.animated::after { display: none; } }

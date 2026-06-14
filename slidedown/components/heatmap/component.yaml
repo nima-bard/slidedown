@@ -1,0 +1,40 @@
+name: heatmap
+aliases: [matrix, gridmap]
+description: A grid of intensity cells (level 0–4 on the accent scale) in labelled rows — for calendars, cohorts or any value matrix. Each [hrow label:…] holds [cell level:N] cells; a cell may show a value.
+content: parse
+template: |
+  <div class="heatmap">{{{content}}}</div>
+children:
+  hrow:
+    aliases: [row]
+    content: parse
+    props:
+      label:
+        type: text
+        default: ""
+    template: |
+      <div class="hm-row">{{#label}}<span class="hm-label">{{label}}</span>{{/label}}<div class="hm-cells">{{{content}}}</div></div>
+    children:
+      cell:
+        aliases: [c]
+        content: none
+        props:
+          level:
+            type: number
+            default: 0
+          value:
+            type: text
+            default: ""
+        template: |
+          <span class="hm-cell lvl-{{level}}">{{value}}</span>
+styles: |
+  .heatmap { display: flex; flex-direction: column; gap: 8px; margin-top: 28px; }
+  .hm-row { display: flex; align-items: center; gap: 12px; }
+  .hm-label { flex: none; width: 70px; text-align: right; font-size: 13px; font-weight: 600; color: var(--color-muted); }
+  .hm-cells { flex: 1; display: flex; gap: 8px; }
+  .hm-cell { flex: 1; aspect-ratio: 1 / 1; max-width: 56px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .hm-cell.lvl-0 { background: color-mix(in srgb, var(--color-accent) 8%, var(--color-card)); color: var(--color-muted); }
+  .hm-cell.lvl-1 { background: color-mix(in srgb, var(--color-accent) 28%, transparent); color: var(--color-ink); }
+  .hm-cell.lvl-2 { background: color-mix(in srgb, var(--color-accent) 50%, transparent); color: var(--color-on-accent); }
+  .hm-cell.lvl-3 { background: color-mix(in srgb, var(--color-accent) 74%, transparent); color: var(--color-on-accent); }
+  .hm-cell.lvl-4 { background: var(--color-accent); color: var(--color-on-accent); }

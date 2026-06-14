@@ -1,0 +1,28 @@
+name: chips
+aliases: [pills, tags]
+description: A row of small pills.
+content: parse
+template: |
+  <div class="chips">{{{content}}}</div>
+children:
+  chip:
+    aliases: [pill, tag]
+    content: parse
+    props:
+      color:
+        type: token
+      icon:
+        type: text
+        default: ""
+    template: |
+      <span class="chip" style="{{#color}}--chip:var(--color-{{color}});{{/color}}">{{#icon}}<span class="ic">{{{icon}}}</span>{{/icon}}{{{content}}}</span>
+styles: |
+  .chips { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 26px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 9px; background: var(--color-card);
+    border-radius: var(--radius-chip); padding: 12px 18px; font-weight: 500; font-size: 17px; box-shadow: var(--shadow-sm);
+  }
+  .chip .ic {
+    width: 28px; height: 28px; border-radius: 9px; display: grid; place-items: center; font-size: 15px;
+    background: color-mix(in srgb, var(--chip, var(--color-accent)) 18%, transparent); color: var(--chip, var(--color-accent));
+  }

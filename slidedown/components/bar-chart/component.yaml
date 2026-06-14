@@ -1,0 +1,25 @@
+name: bar-chart
+aliases: [barchart, column-chart]
+description: A simple themed bar chart drawn as inline SVG. Data is [point label:… value:…] children.
+chart: bar
+content: parse
+template: |
+  <div class="chart">{{{content}}}</div>
+children:
+  point:
+    aliases: [datum, col]
+    content: none
+    props:
+      label:
+        type: text
+        default: ""
+      value:
+        type: number
+styles: |
+  .chart { margin-top: 32px; }
+  .chart-svg { width: 100%; height: auto; display: block; }
+  .chart-svg text { font-family: var(--font-base); }
+  /* each bar's fill (a cycled palette token) is set inline by the compiler */
+  .chart-val { fill: var(--color-ink); font-weight: 700; }
+  .chart-lbl { fill: var(--color-muted); }
+  .chart-axis { stroke: var(--color-line); }

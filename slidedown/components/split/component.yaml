@@ -1,0 +1,18 @@
+name: split
+aliases: [coverage]
+description: Covered-vs-uncovered shown in one two-tone bar.
+content: parse
+template: |
+  <div class="bars">{{{content}}}</div>
+children:
+  bar:
+    content: parse
+    props:
+      value:
+        type: number
+    template: |
+      <div class="meter"><div class="top"><span>{{{content}}}</span><span class="pct">{{value}}%</span></div><div class="splitbar"><span class="cov" style="width:{{value}}%"></span><span class="unc"></span></div></div>
+styles: |
+  .splitbar { display: flex; height: 14px; border-radius: var(--radius-pill); overflow: hidden; background: var(--color-line); }
+  .splitbar .cov { background: linear-gradient(90deg, var(--color-ok), color-mix(in srgb, var(--color-ok) 70%, #000)); }
+  .splitbar .unc { flex: 1; background: linear-gradient(90deg, #fb7185, var(--color-danger)); }

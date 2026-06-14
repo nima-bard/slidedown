@@ -1,0 +1,54 @@
+# falling-star — Van Gogh's Starry Night (public domain) as the sky. A per-mode
+# `scrim` (emitted as --scrim) sets the mood: LIGHT washes the painting to a pastel
+# dawn with violet ink; DARK deepens it to night with cream ink. `textshadow` keeps
+# prose legible straight on the canvas. Caveat (handwriting) is bundled by theme.css.
+font:
+  base: "'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive"
+  mono: "'SFMono-Regular', Consolas, monospace"
+gradient:
+  accent: "linear-gradient(125deg, #e07a2a 0%, #f1a836 52%, #f8cf6e 100%)"
+radius:
+  card: "26px"
+  pill: "999px"
+  chip: "14px"
+space:
+  line: "1.55"
+  gap: "22px"
+
+color:                # mode-invariant brand / semantic — warm comet orange/gold (no purple/pink)
+  accent: "#f1a836"
+  accent-2: "#e07a2a"
+  on-accent: "#1b3270"   # text on orange/gold fills = the night-sky blue
+  ok: "#1fa874"
+  warn: "#d4912a"
+  info: "#5b86e0"
+  danger: "#e85a6f"
+  deep: "#160e34"
+
+light:                # the pastel-dawn falling-star painting
+  sky: "url('assets/sky-dawn.png')"
+  scrim: "linear-gradient(180deg, rgba(250,247,255,.64) 0%, rgba(249,246,255,.52) 55%, rgba(250,247,255,.56) 100%)"
+  textshadow: "0 1px 3px rgba(255,255,255,.72)"
+  color:
+    surface: "#eee8fb"
+    ink: "#36296a"
+    muted: "#6f6499"
+    line: "rgba(54,41,106,.18)"
+    card: "rgba(255,255,255,.5)"
+  shadow:
+    card: "0 26px 54px -22px rgba(60,45,120,.4)"
+    sm: "0 14px 30px -16px rgba(60,45,120,.3)"
+
+dark:                 # the deep-night falling-star painting
+  sky: "url('assets/sky-night.png')"
+  scrim: "linear-gradient(180deg, rgba(7,5,24,.64) 0%, rgba(9,7,28,.54) 55%, rgba(9,7,28,.58) 100%)"
+  textshadow: "0 1px 4px rgba(0,0,0,.62)"
+  color:
+    surface: "#120c30"
+    ink: "#f4ecd8"
+    muted: "#bcb2da"
+    line: "rgba(255,255,255,.14)"
+    card: "rgba(24,16,52,.5)"
+  shadow:
+    card: "0 30px 60px -24px rgba(0,0,0,.7)"
+    sm: "0 16px 34px -18px rgba(0,0,0,.55)"

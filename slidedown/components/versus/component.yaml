@@ -1,0 +1,39 @@
+name: versus
+aliases: [vs, before-after]
+description: A against B, with an arrow icon between the two sides.
+content: parse
+props:
+  icon:
+    type: text
+    default: arrow-right
+template: |
+  <div class="versus">{{{content}}}<span class="vs-arrow">{{{icon}}}</span></div>
+children:
+  side:
+    content: parse
+    props:
+      label:
+        type: text
+        default: ""
+      title:
+        type: text
+      prefer:
+        type: flag
+    template: |
+      <div class="vside{{#prefer}} b{{/prefer}}">{{#label}}<span class="vlabel">{{label}}</span>{{/label}}<h3>{{title}}</h3>{{{content}}}</div>
+styles: |
+  .versus { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: stretch; margin-top: 32px; position: relative; text-align: left; }
+  .vside { background: var(--color-card); border-radius: var(--radius-card); padding: 24px 28px; box-shadow: var(--shadow-sm); }
+  .vside.b { border: 2px solid var(--color-accent); box-shadow: var(--shadow-card); }
+  .vlabel { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--color-muted); }
+  .vside.b .vlabel { color: var(--color-accent); }
+  .vside h3 { font-size: 20px; font-weight: 600; margin: 4px 0 14px; }
+  .versus .vside .points { margin-top: 0; font-size: 15px; color: var(--color-muted); }
+  .versus .vside .mk { color: var(--color-muted); }
+  .versus .vside.b .mk { color: var(--color-accent); }
+  .vs-arrow {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 3;
+    width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-accent); color: #fff;
+    box-shadow: var(--shadow-card); display: flex; align-items: center; justify-content: center;
+  }
+  .vs-arrow svg { width: 28px; height: 28px; }

@@ -1,0 +1,27 @@
+name: gauge
+aliases: [donut, ring, dial]
+description: Donut percentage(s) — pure-CSS ring driven by the value.
+content: parse
+template: |
+  <div class="gauges">{{{content}}}</div>
+children:
+  dial:
+    content: parse
+    props:
+      value:
+        type: number
+    template: |
+      <div class="gauge"><div class="ring" style="--v:{{value}}"><span class="g-num">{{value}}%</span></div><span class="g-cap">{{{content}}}</span></div>
+styles: |
+  .gauges { display: flex; gap: 34px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+  .gauge { text-align: center; }
+  .gauge .ring {
+    width: 150px; height: 150px; border-radius: 50%; display: grid; place-items: center; position: relative;
+    background: conic-gradient(var(--color-accent) calc(var(--v) * 1%), var(--color-line) 0);
+  }
+  .gauge .ring::before { content: ""; position: absolute; width: 74%; height: 74%; border-radius: 50%; background: var(--color-surface); }
+  .gauge .g-num {
+    position: relative; z-index: 1; font-size: 30px; font-weight: 700;
+    background: var(--gradient-accent); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .gauge .g-cap { margin-top: 8px; font-weight: 600; font-size: 14px; color: var(--color-muted); display: block; }

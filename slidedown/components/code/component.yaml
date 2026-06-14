@@ -1,0 +1,21 @@
+name: code
+aliases: [snippet, terminal]
+description: A code window with a title bar. Content is verbatim.
+content: verbatim
+props:
+  lang:
+    type: text
+    default: ""
+  title:
+    type: text
+    default: ""
+template: |
+  <div class="codewin"><div class="codebar"><span class="cdot r"></span><span class="cdot y"></span><span class="cdot g"></span>{{#title}}<span class="ctitle">{{title}}</span>{{/title}}</div><pre><code class="lang-{{lang}}">{{{content}}}</code></pre></div>
+styles: |
+  .codewin { margin-top: 32px; background: #1e1733; border-radius: 18px; box-shadow: var(--shadow-card); overflow: hidden; text-align: left; }
+  .codebar { display: flex; align-items: center; gap: 7px; padding: 12px 16px; background: rgba(255,255,255,.05); }
+  .cdot { width: 11px; height: 11px; border-radius: 50%; }
+  .cdot.r { background: #fb7185; } .cdot.y { background: #fbbf24; } .cdot.g { background: #34d399; }
+  .ctitle { margin-left: 8px; font-size: 12px; color: #9c93c0; font-family: var(--font-mono); letter-spacing: .04em; }
+  .codewin pre { margin: 0; padding: 18px 22px; overflow-x: auto; }
+  .codewin code { background: none; padding: 0; color: #e8e3f8; font-size: 14.5px; line-height: 1.6; font-family: var(--font-mono); }

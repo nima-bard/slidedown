@@ -1,0 +1,23 @@
+name: statement
+aliases: [hero, big-idea]
+description: One oversized, centred statement — the slide that is a single sentence. Optional `kicker` (eyebrow above) and `by` attribution below; the `gradient` flag paints the text with the theme gradient. Use [text] inside to accent words.
+content: parse
+props:
+  kicker:
+    type: text
+    default: ""
+  by:
+    type: text
+    default: ""
+  gradient:
+    type: flag
+template: |
+  <div class="statement{{#gradient}} grad{{/gradient}}">{{#kicker}}<span class="stmt-kicker">{{kicker}}</span>{{/kicker}}<p class="stmt-text">{{{content}}}</p>{{#by}}<span class="stmt-by">{{by}}</span>{{/by}}</div>
+styles: |
+  .statement { max-width: 1000px; margin: 4vh auto; text-align: center; }
+  .stmt-kicker { display: block; font-size: 14px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 18px; }
+  .stmt-text { font-size: clamp(30px, 5vw, 60px); font-weight: 800; line-height: 1.22; letter-spacing: -.02em; color: var(--color-ink); }
+  .stmt-by { display: block; margin-top: 22px; font-size: 18px; color: var(--color-muted); }
+  /* clip-to-text paints only inside the box; a roomy line-height + bottom padding keep
+     the last line's glyph bottoms and descenders (g, y, p) from being cut off */
+  .statement.grad .stmt-text { background: var(--gradient-accent); -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .26em; }

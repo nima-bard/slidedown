@@ -1,0 +1,20 @@
+name: logo
+aliases: [wordmark, brandmark]
+description: The deck logo on a slide. Void. With no src it uses the front-matter `logo:` (light + dark) and shows the variant matching the slide's mode; files are copied into output/assets/.
+content: none
+assetProps: [src]
+props:
+  src:
+    type: text
+    default: ""
+  alt:
+    type: text
+    default: logo
+template: |
+  <span class="logo">{{#srcLight}}<img class="lm" src="{{srcLight}}" alt="{{alt}}">{{/srcLight}}{{#srcDark}}<img class="dm" src="{{srcDark}}" alt="{{alt}}">{{/srcDark}}</span>
+styles: |
+  .logo { display: block; }
+  .logo img { display: block; width: 100%; height: auto; }
+  .logo .dm { display: none; }
+  .slide.dark .logo .lm { display: none; }
+  .slide.dark .logo .dm { display: block; }

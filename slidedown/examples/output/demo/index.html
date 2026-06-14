@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Slidedown — every component</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="viewer/presenter.css">
+</head>
+<body>
+<div class="deck" id="deck" data-nav="anim" data-transition="slide">
+<section class="slide cover dark glow active">
+<div class="inner">
+<h1 class="s-title">Slidedown</h1><p class="s-sub">One language, two themes, forty-five components</p><div class="sd-box sd-a-left" style="width:20%;"><span class="logo"><img class="lm" src="assets/logo.svg" alt="logo"><img class="dm" src="assets/logo-dark.svg" alt="logo"></span></div>
+A
+<span class="text w-semibold" style="color:var(--color-accent);">forgiving</span>
+, deterministic language — write <code>.sd</code>, compile, present.
+<div class="meta"><ul class="points"><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span><span><strong>Author</strong> · Presenter skill</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span><span><strong>Components</strong> · 45</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></span><span><strong>Themes</strong> · aurora · verde</span></li></ul></div>
+<div class="group a-center" style="gap:18px"><div class="chips"><span class="chip" style="--chip:var(--color-accent);"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/>
+<path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg></span>Tokens are the contract</span>
+<span class="chip" style="--chip:var(--color-info);"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2.5 4.5 13.5H11l-1 8 8.5-11.5H12l1-7.5Z"/></svg></span>Logicless templates</span>
+<span class="chip" style="--chip:var(--color-ok);"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.7 4.6 4.6 1.7-4.6 1.7L12 16l-1.7-4.5L5.7 9.8l4.6-1.7L12 3.5Z"/>
+<path d="M18.5 14.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2Z"/></svg></span>Deterministic</span></div></div>
+<aside class="speaker-notes"><p>This deck exercises every component; in real decks keep one idea per slide.</p></aside></div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Structure — flow &amp; callout</h2><p class="s-sub">How a deck flows, end to end</p><div class="flow scale-2"><div class="node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L18.4 9.6a2.1 2.1 0 0 0-3-3L5 17v3Z"/>
+<path d="M13.5 6.5l3 3"/></svg></span><strong>Author</strong><span class="sub">write the .sd</span></div>
+<div class="node focal"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/>
+<path d="M12 2.5v3M12 18.5v3M21.5 12h-3M5.5 12h-3M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1M18.7 18.7l-2.1-2.1M7.4 7.4 5.3 5.3"/></svg></span><strong>Compile</strong><span class="sub">five stages</span></div>
+<div class="node"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 5v14l11-7L7 5Z"/></svg></span><strong>Present</strong><span class="sub">static html</span></div></div>
+<div class="sd-box sd-a-center"><div class="callout tone-tip"><div class="co-body">Mark a node <code>focal</code> to make it the anchor.</div></div></div>
+<aside class="speaker-notes"><p>Walk the flow left to right; dwell on Compile — that's the deterministic step. Press S to see these notes; arrows to move.</p></aside></div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Sequence &amp; lists</h2><p class="s-sub">Ordered steps beside checked lists</p><div class="columns"><div class="column" style="flex:0 0 50%;"><div class="steps"><div class="step"><span class="n"></span><div class="body"><strong>Register</strong><span>discover + validate</span></div></div>
+<div class="step"><span class="n"></span><div class="body"><strong>Render</strong><span>AST to HTML</span></div></div>
+<div class="step"><span class="n"></span><div class="body"><strong>Publish</strong><span>write output</span></div></div></div></div>
+<div class="column" style="flex:0 0 50%;"><div class="checks"><div class="check"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><div class="tx"><strong>Deterministic</strong><span>same in, same out</span></div></div>
+<div class="check"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><div class="tx"><strong>Self-contained</strong><span>zero deps</span></div></div>
+<div class="check"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><div class="tx"><strong>Forgiving</strong><span>nearest-match errors</span></div></div>
+<div class="check"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><div class="tx"><strong>Themeable</strong><span>tokens drive it</span></div></div></div></div></div>
+</div>
+</section>
+<section class="slide dark">
+<div class="inner">
+<h2 class="s-title">Choices — cards</h2><p class="s-sub">One option per card</p><div class="cards g3"><div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
+<path d="M12 12v9M12 12l8-4.5M12 12 4 7.5"/></svg></span><h3>Tokens</h3><p>Data, validated against a schema.</p></div>
+<div class="card win animated"><span class="pill">Core</span><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.85-4.25 4.15 1 5.8L12 16.9l-5.25 2.7 1-5.8L3.5 9.65l5.9-.85L12 3.5Z"/></svg></span><h3>Components</h3><p>Manifest + template + CSS.</p></div>
+<div class="card"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+<circle cx="8.5" cy="8.5" r="1.5"/>
+<circle cx="15.5" cy="8.5" r="1.5"/>
+<circle cx="12" cy="14.5" r="1.5"/></svg></span><h3>Themes</h3><p>A value-set each, light &amp; dark.</p></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Compare &amp; decide</h2><p class="s-sub">Weigh the options, mark the winner</p><div class="versus"><div class="vside"><span class="vlabel">Before</span><h3>Hand-written HTML</h3><ul class="points"><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span><span>slow to edit</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></span><span>not diffable</span></li></ul></div>
+<div class="vside b"><span class="vlabel">After</span><h3>Slidedown</h3><ul class="points"><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>write what you mean</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>deterministic</span></li></ul></div><span class="vs-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 12h14M13 6.5 18.5 12 13 17.5"/></svg></span></div>
+<div class="tablewrap"><table class="cmp"><thead><tr><th>Option</th><th>Fast</th><th>Diffable</th><th>Chosen</th></tr></thead><tbody><tr class="pick"><td class="name">Slidedown</td><td class="c yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></td><td class="c yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></td><td class="c yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></td></tr><tr><td class="name">Slide exports</td><td class="c yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></td><td class="c no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></td><td class="c no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></td></tr></tbody></table></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Group &amp; sequence</h2><p class="s-sub">Panels in parallel, phases over time</p><div class="panels"><div class="panel"><span class="label">Today</span><h3>What we have</h3><ul class="points"><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>Two themes, each light &amp; dark</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>45 components</span></li></ul></div>
+<div class="panel"><span class="label">Next</span><h3>What can come</h3><ul class="points"><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>More themes</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>An asset pipeline</span></li></ul></div></div>
+<div class="timeline"><div class="tl"><span class="tl-dot"></span><span class="tl-when">v1</span><span class="tl-title">Engine</span><span class="tl-sub">five stages</span></div>
+<div class="tl current animated"><span class="tl-dot"></span><span class="tl-when">v2</span><span class="tl-title">Library</span><span class="tl-sub">45 components</span></div>
+<div class="tl future"><span class="tl-dot"></span><span class="tl-when">v3</span><span class="tl-title">More</span><span class="tl-sub">your ideas</span></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Milestones</h2><p class="s-sub">An alternating, boxed timeline</p><div class="milestones"><div class="ms-item"><div class="ms-box"><span class="ms-label">Day 1</span><div class="ms-desc">Draft the deck in plain <code>.sd</code></div></div><span class="ms-node"></span></div>
+<div class="ms-item current animated"><div class="ms-box"><span class="ms-label">Day 2</span><div class="ms-desc">Compile — five deterministic stages</div></div><span class="ms-node"></span></div>
+<div class="ms-item"><div class="ms-box"><span class="ms-label">Day 3</span><div class="ms-desc">Review it live in the browser</div></div><span class="ms-node"></span></div>
+<div class="ms-item"><div class="ms-box"><span class="ms-label">Day 4</span><div class="ms-desc">Hand off the static folder</div></div><span class="ms-node"></span></div>
+<div class="ms-item"><div class="ms-box"><span class="ms-label">Day 5</span><div class="ms-desc">Edit and recompile, byte-for-byte</div></div><span class="ms-node"></span></div></div>
+</div>
+</section>
+<section class="slide dark">
+<div class="inner">
+<h2 class="s-title">By the numbers</h2><p class="s-sub">Metrics, a gauge and progress bars</p><div class="columns"><div class="column" style="flex:0 0 55%;"><div class="metrics"><div class="metric"><span class="v">5</span><span class="k">stages</span></div>
+<div class="metric"><span class="v">45</span><span class="k">components</span></div>
+<div class="metric"><span class="v">0</span><span class="k">deps</span></div></div>
+<div class="gauges"><div class="gauge"><div class="ring" style="--v:88"><span class="g-num">88%</span></div><span class="g-cap">would present again</span></div></div></div>
+<div class="column" style="flex:0 0 45%;"><div class="bars"><div class="meter animated"><div class="top"><span>Deterministic</span><span class="pct">100%</span></div><div class="bar"><span style="width:100%"></span></div></div>
+<div class="meter"><div class="top"><span>Coverage</span><span class="pct">92%</span></div><div class="bar"><span style="width:92%"></span></div></div></div>
+<div class="bars"><div class="meter"><div class="top"><span>Covered vs not</span><span class="pct">73%</span></div><div class="splitbar"><span class="cov" style="width:73%"></span><span class="unc"></span></div></div></div></div></div>
+<aside class="speaker-notes"><p>Lead with "zero dependencies" — the number that surprises people. The gauge is "would present again".</p></aside></div>
+</section>
+<section class="slide dark">
+<div class="inner">
+<h2 class="s-title">KPIs at a glance</h2><p class="s-sub">Value, target, movement</p><div class="scorecard"><div class="kpi delta-up"><span class="kpi-label">ARR</span><div class="kpi-value">$1.2M</div><div class="delta-change"><span class="delta-arrow"></span><span>+18%</span></div></div>
+<div class="kpi delta-down dtone-ok"><span class="kpi-label">Churn</span><div class="kpi-value">4.7%</div><div class="delta-change"><span class="delta-arrow"></span><span>-0.6pt</span></div></div>
+<div class="kpi delta-up"><span class="kpi-label">NPS</span><div class="kpi-value">92<span class="kpi-target">/100</span></div><div class="delta-change"><span class="delta-arrow"></span><span>+5</span></div></div>
+<div class="kpi delta-up"><span class="kpi-label">Decks shipped</span><div class="kpi-value">38</div><div class="delta-change"><span class="delta-arrow"></span><span>+12</span></div></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Movement &amp; health</h2><p class="s-sub">One headline, and the workstreams behind it</p><div class="columns"><div class="column" style="flex:0 0 40%;"><div class="delta delta-up delta-acc animated"><span class="delta-label">Adoption</span><div class="delta-value">+34%</div><div class="delta-change"><span class="delta-arrow"></span><span>vs last quarter</span></div><div class="delta-note">Growth across every team.</div></div></div>
+<div class="column" style="flex:0 0 60%;"><div class="status"><div class="st-row st-ok"><span class="st-badge">ok</span><span class="st-name">Compiler</span><span class="st-note">all five stages green</span></div>
+<div class="st-row st-warn"><span class="st-badge">warn</span><span class="st-name">Themes</span><span class="st-note">dark-mode polish pending</span><span class="st-owner">Design</span></div>
+<div class="st-row st-risk"><span class="st-badge">risk</span><span class="st-name">Docs</span><span class="st-note">behind on component pages</span><span class="st-owner">DX</span></div>
+<div class="st-row st-done"><span class="st-badge">done</span><span class="st-name">Charts</span><span class="st-note">shipped this week</span></div></div></div></div>
+</div>
+</section>
+<section class="slide glow">
+<div class="inner">
+<h2 class="s-title">One idea</h2><p class="s-sub">The whole pitch in a sentence</p><div class="statement"><span class="stmt-kicker">Why Slidedown</span><p class="stmt-text">Decks should be written, not dragged.</p></div>
+</div>
+</section>
+<section class="slide dark">
+<div class="inner">
+<h2 class="s-title">Pricing</h2><p class="s-sub">Three plans, one engine</p><div class="pricing"><div class="plan"><span class="plan-name">Starter</span><div class="plan-price">Free</div><div class="plan-features"><ul class="points"><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>One theme</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>All 45 components</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>Community support</span></li></ul></div></div>
+<div class="plan featured animated"><span class="plan-badge">Popular</span><span class="plan-name">Team</span><div class="plan-price">$12<span class="plan-period">/mo</span></div><div class="plan-features"><ul class="points"><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>Both themes</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>Speaker remote</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>Shared assets</span></li></ul></div></div>
+<div class="plan"><span class="plan-name">Enterprise</span><div class="plan-price">Custom</div><div class="plan-features"><ul class="points"><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>Custom themes</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>SSO &amp; audit</span></li><li><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span><span>Priority support</span></li></ul></div></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Hierarchy &amp; cycle</h2><p class="s-sub">Two ways to show structure</p><div class="columns"><div class="column" style="flex:0 0 46%;"><div class="pyramid"><div class="pyr-layer" style="--i:0;--n:4"><span class="pyr-title">Vision</span><span class="pyr-text">why we build</span></div>
+<div class="pyr-layer" style="--i:1;--n:4"><span class="pyr-title">Strategy</span><span class="pyr-text">where we play</span></div>
+<div class="pyr-layer" style="--i:2;--n:4"><span class="pyr-title">Execution</span><span class="pyr-text">what ships</span></div>
+<div class="pyr-layer" style="--i:3;--n:4"><span class="pyr-title">Foundation</span><span class="pyr-text">tokens &amp; compiler</span></div></div></div>
+<div class="column" style="flex:0 0 54%;"><div class="cycle"><div class="cyc-stage" style="--i:0;--n:4"><span class="cyc-num">1</span><span class="cyc-title">Author</span><span class="cyc-text">write .sd</span></div>
+<div class="cyc-stage" style="--i:1;--n:4"><span class="cyc-num">2</span><span class="cyc-title">Compile</span><span class="cyc-text">five stages</span></div>
+<div class="cyc-stage" style="--i:2;--n:4"><span class="cyc-num">3</span><span class="cyc-title">Review</span><span class="cyc-text">in the browser</span></div>
+<div class="cyc-stage" style="--i:3;--n:4"><span class="cyc-num">4</span><span class="cyc-title">Ship</span><span class="cyc-text">static folder</span></div><span class="cyc-hub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a8 8 0 0 1 14-5l2 2"/>
+<path d="M20 7V3.5m0 3.5h-3.5"/>
+<path d="M20 13a8 8 0 0 1-14 5l-2-2"/>
+<path d="M4 17v3.5m0-3.5h3.5"/></svg></span></div></div></div>
+</div>
+</section>
+<section class="slide dark">
+<div class="inner">
+<h2 class="s-title">Activity</h2><p class="s-sub">Commits per day, four weeks</p><div class="heatmap"><div class="hm-row"><span class="hm-label">Mon</span><div class="hm-cells"><span class="hm-cell lvl-1"></span>
+<span class="hm-cell lvl-2"></span>
+<span class="hm-cell lvl-4"></span>
+<span class="hm-cell lvl-3"></span></div></div>
+<div class="hm-row"><span class="hm-label">Tue</span><div class="hm-cells"><span class="hm-cell lvl-0"></span>
+<span class="hm-cell lvl-3"></span>
+<span class="hm-cell lvl-2"></span>
+<span class="hm-cell lvl-4"></span></div></div>
+<div class="hm-row"><span class="hm-label">Wed</span><div class="hm-cells"><span class="hm-cell lvl-2"></span>
+<span class="hm-cell lvl-4"></span>
+<span class="hm-cell lvl-3"></span>
+<span class="hm-cell lvl-1"></span></div></div>
+<div class="hm-row"><span class="hm-label">Thu</span><div class="hm-cells"><span class="hm-cell lvl-3"></span>
+<span class="hm-cell lvl-2"></span>
+<span class="hm-cell lvl-4"></span>
+<span class="hm-cell lvl-2"></span></div></div>
+<div class="hm-row"><span class="hm-label">Fri</span><div class="hm-cells"><span class="hm-cell lvl-4"></span>
+<span class="hm-cell lvl-3"></span>
+<span class="hm-cell lvl-1"></span>
+<span class="hm-cell lvl-0"></span></div></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">API &amp; architecture</h2><p class="s-sub">The surface and the stack</p><div class="columns"><div class="column" style="flex:0 0 50%;"><div class="api"><div class="ep"><span class="ep-method m-GET">GET</span><code class="ep-path">/decks</code><span class="ep-desc">list decks</span></div>
+<div class="ep"><span class="ep-method m-POST">POST</span><code class="ep-path">/compile</code><span class="ep-desc">build a deck</span></div>
+<div class="ep"><span class="ep-method m-PUT">PUT</span><code class="ep-path">/themes/:id</code><span class="ep-desc">update a theme</span></div>
+<div class="ep"><span class="ep-method m-DELETE">DELETE</span><code class="ep-path">/decks/:id</code><span class="ep-desc">remove a deck</span></div></div></div>
+<div class="column" style="flex:0 0 50%;"><div class="arch"><div class="arch-tier"><span class="arch-tier-label">Author</span><div class="arch-boxes"><div class="arch-box"><span class="arch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L18.4 9.6a2.1 2.1 0 0 0-3-3L5 17v3Z"/>
+<path d="M13.5 6.5l3 3"/></svg></span><span class="arch-box-label">.sd source</span></div></div></div>
+<div class="arch-tier"><span class="arch-tier-label">Build</span><div class="arch-boxes"><div class="arch-box"><span class="arch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/>
+<path d="M12 2.5v3M12 18.5v3M21.5 12h-3M5.5 12h-3M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1M18.7 18.7l-2.1-2.1M7.4 7.4 5.3 5.3"/></svg></span><span class="arch-box-label">compiler</span></div>
+<div class="arch-box"><span class="arch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/>
+<circle cx="8.5" cy="8.5" r="1.5"/>
+<circle cx="15.5" cy="8.5" r="1.5"/>
+<circle cx="12" cy="14.5" r="1.5"/></svg></span><span class="arch-box-label">themes</span></div></div></div>
+<div class="arch-tier"><span class="arch-tier-label">Output</span><div class="arch-boxes"><div class="arch-box"><span class="arch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7l5 5v13H6V3Z"/>
+<path d="M13 3v5h5M8.5 13h7M8.5 16.5h7"/></svg></span><span class="arch-box-label">index.html</span></div>
+<div class="arch-box"><span class="arch-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2.5"/>
+<circle cx="9" cy="10" r="1.6"/>
+<path d="M5 18l4.5-4.5 3 3 2.5-2.5L19 17"/></svg></span><span class="arch-box-label">assets</span></div></div></div></div></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Charts — adoption</h2><p class="s-sub">A bar per team</p><div class="sd-box sd-a-center"><span class="text a-center w-semibold" style="">Adoption by team</span></div>
+<div class="sd-box sd-a-center" style="width:96%;"><div class="chart"><svg class="chart-svg" viewBox="0 0 640 300" role="img" aria-hidden="true"><line class="chart-axis" x1="18" y1="260" x2="622" y2="260" stroke-width="2"/><rect class="chart-bar" x="58.5" y="150.44" width="70" height="109.56" rx="6" fill="var(--color-accent)"/><text class="chart-val" x="93.5" y="142.44" text-anchor="middle" font-size="16">34</text><text class="chart-lbl" x="93.5" y="284" text-anchor="middle" font-size="15">Platform</text><rect class="chart-bar" x="209.5" y="73.11" width="70" height="186.89" rx="6" fill="var(--color-accent-2)"/><text class="chart-val" x="244.5" y="65.11" text-anchor="middle" font-size="16">58</text><text class="chart-lbl" x="244.5" y="284" text-anchor="middle" font-size="15">Payments</text><rect class="chart-bar" x="360.5" y="127.89" width="70" height="132.11" rx="6" fill="var(--color-info)"/><text class="chart-val" x="395.5" y="119.89" text-anchor="middle" font-size="16">41</text><text class="chart-lbl" x="395.5" y="284" text-anchor="middle" font-size="15">Risk</text><rect class="chart-bar" x="511.5" y="28" width="70" height="232" rx="6" fill="var(--color-ok)"/><text class="chart-val" x="546.5" y="20" text-anchor="middle" font-size="16">72</text><text class="chart-lbl" x="546.5" y="284" text-anchor="middle" font-size="15">Data</text></svg></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Charts — trend</h2><p class="s-sub">Month over month</p><div class="sd-box sd-a-center"><span class="text a-center w-semibold" style="">Decks shipped per month</span></div>
+<div class="sd-box sd-a-center" style="width:96%;"><div class="chart"><svg class="chart-svg" viewBox="0 0 640 300" role="img" aria-hidden="true"><line class="chart-axis" x1="18" y1="260" x2="622" y2="260" stroke-width="2"/><path class="chart-area" d="M 18 260 L 18 231 L 138.8 198.38 L 259.6 165.75 L 380.4 122.25 L 501.2 71.5 L 622 28 L 622 260 Z"/><polyline class="chart-line" fill="none" stroke-width="3" points="18,231 138.8,198.38 259.6,165.75 380.4,122.25 501.2,71.5 622,28"/><circle class="chart-dot" cx="18" cy="231" r="5"/><text class="chart-lbl" x="18" y="284" text-anchor="middle" font-size="15">Jan</text><circle class="chart-dot" cx="138.8" cy="198.38" r="5"/><text class="chart-lbl" x="138.8" y="284" text-anchor="middle" font-size="15">Feb</text><circle class="chart-dot" cx="259.6" cy="165.75" r="5"/><text class="chart-lbl" x="259.6" y="284" text-anchor="middle" font-size="15">Mar</text><circle class="chart-dot" cx="380.4" cy="122.25" r="5"/><text class="chart-lbl" x="380.4" y="284" text-anchor="middle" font-size="15">Apr</text><circle class="chart-dot" cx="501.2" cy="71.5" r="5"/><text class="chart-lbl" x="501.2" y="284" text-anchor="middle" font-size="15">May</text><circle class="chart-dot" cx="622" cy="28" r="5"/><text class="chart-lbl" x="622" y="284" text-anchor="middle" font-size="15">Jun</text></svg></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Pie chart</h2><p class="s-sub">Each slice takes the spotlight</p><div class="sd-box sd-a-center"><span class="text a-center w-semibold" style="">Where prep time goes</span></div>
+<div class="chart"><div class="pie-chart animated pc-n4"><svg class="pie-svg" viewBox="0 0 300 300" role="img" aria-hidden="true"><path class="pie-slice" fill="var(--color-accent)" d="M 150 150 L 150 30 A 120 120 0 0 1 187.08 264.13 Z" style="--dx:13.83px;--dy:-2.19px;animation-delay:0s"/><path class="pie-slice" fill="var(--color-accent-2)" d="M 150 150 L 187.08 264.13 A 120 120 0 0 1 35.87 187.08 Z" style="--dx:-6.36px;--dy:12.47px;animation-delay:4.5s"/><path class="pie-slice" fill="var(--color-info)" d="M 150 150 L 35.87 187.08 A 120 120 0 0 1 79.47 52.92 Z" style="--dx:-13.31px;--dy:-4.33px;animation-delay:9s"/><path class="pie-slice" fill="var(--color-ok)" d="M 150 150 L 79.47 52.92 A 120 120 0 0 1 150 30 Z" style="--dx:-4.33px;--dy:-13.31px;animation-delay:13.5s"/></svg><ul class="pie-legend"><li class="pie-leg" style="animation-delay:0s"><span class="pie-sw" style="background:var(--color-accent)"></span><span class="pie-lab">Writing</span><span class="pie-pct">45%</span></li><li class="pie-leg" style="animation-delay:4.5s"><span class="pie-sw" style="background:var(--color-accent-2)"></span><span class="pie-lab">Reviewing</span><span class="pie-pct">25%</span></li><li class="pie-leg" style="animation-delay:9s"><span class="pie-sw" style="background:var(--color-info)"></span><span class="pie-lab">Design</span><span class="pie-pct">20%</span></li><li class="pie-leg" style="animation-delay:13.5s"><span class="pie-sw" style="background:var(--color-ok)"></span><span class="pie-lab">Polish</span><span class="pie-pct">10%</span></li></ul></div></div>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Evidence</h2><p class="s-sub">Tables, formulas and code</p><div class="columns"><div class="column" style="flex:0 0 42%;"><div class="badge"><span class="n">100%</span><span class="l">Slidedown surface</span></div>
+<div class="tablewrap" style="--th: var(--color-accent)"><table class="report"><thead><tr><th>Stage</th><th>Output</th></tr></thead><tbody><tr><td class="name">parse</td><td>AST</td></tr><tr><td class="name">render</td><td>HTML</td></tr></tbody></table></div></div>
+<div class="column" style="flex:0 0 58%;"><div class="formula">risk = impact<sup>2</sup> × (1 − <strong>coverage</strong>)<sup>3</sup></div>
+<div class="example">covered / total = <strong>73%</strong></div>
+<div class="codewin"><div class="codebar"><span class="cdot r"></span><span class="cdot y"></span><span class="cdot g"></span><span class="ctitle">build</span></div><pre><code class="lang-bash">node compiler/slidedown.js examples/demo.sd</code></pre></div></div></div>
+</div>
+</section>
+<section class="slide dark">
+<div class="inner">
+<h2 class="s-title">People &amp; questions</h2><p class="s-sub">The team, and the usual questions</p><div class="team"><div class="person"><span class="avatar">NB</span><strong>Nima Boobard</strong><span class="role">Platform</span><span class="p-sub">author</span></div>
+<div class="person"><span class="avatar">PS</span><strong>Presenter Skill</strong><span class="role">Compiler</span><span class="p-sub">does</span></div></div>
+<div class="faq"><div class="qa"><div class="q"><span class="qm">?</span>Is it deterministic?</div><div class="a">Yes — same .sd, same html.</div></div>
+<div class="qa"><div class="q"><span class="qm">?</span>Must I memorize names?</div><div class="a">No — nearest-match errors guide you.</div></div></div>
+<figure class="bigquote"><span class="q-mark">&ldquo;</span><blockquote>Simplicity is the ultimate sophistication.</blockquote><figcaption>Leonardo da Vinci</figcaption></figure>
+</div>
+</section>
+<section class="slide">
+<div class="inner">
+<h2 class="s-title">Media &amp; the escape hatch</h2><p class="s-sub">Images, icons and raw HTML</p><div class="columns"><div class="column" style="flex:0 0 50%;"><figure class="pic"><img src="assets/sample.svg" alt="sample"><figcaption>a framed image</figcaption></figure></div>
+<div class="column" style="flex:0 0 50%;"><span class="icon" style="width:64px; height:64px; color:var(--color-accent);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l1.7 4.6 4.6 1.7-4.6 1.7L12 16l-1.7-4.5L5.7 9.8l4.6-1.7L12 3.5Z"/>
+<path d="M18.5 14.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2Z"/></svg></span>
+<svg viewBox="0 0 220 120" width="100%"><circle cx="60" cy="60" r="42" fill="none" stroke="#49c297" stroke-width="10"/><rect x="120" y="22" width="76" height="76" rx="12" fill="#158664"/></svg></div></div>
+</div>
+</section>
+<section class="slide closing dark glow">
+<div class="inner">
+<h2 class="s-title">Thank you</h2><p class="s-sub">Markdown in, a deck out</p><span class="icon" style="width:56px; height:56px; color:var(--color-accent);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/>
+<path d="M8.5 12.5l2.3 2.3 4.7-5.1"/></svg></span>
+<div class="cta">Edit · compile · present — the HTML is always generated, never written.</div>
+<div class="sd-box sd-a-center"><span class="text a-center" style="color:var(--color-muted);">Two themes · 45 components · one language.</span></div>
+</div>
+</section>
+</div>
+<div class="brand"><img class="brand-logo lm" src="assets/logo.svg" alt="Slidedown"><img class="brand-logo dm" src="assets/logo-dark.svg" alt="Slidedown"><span>Slidedown</span></div><div class="count"><b id="cur">01</b> / <span id="total">00</span></div><div class="bar-wrap"><span id="bar"></span></div><div class="hint" id="hint"><span><kbd>&larr;</kbd><kbd>&rarr;</kbd> navigate</span><span><kbd>S</kbd> notes</span><span><kbd>F</kbd> fullscreen</span><span><kbd>R</kbd> remote</span></div>
+<script src="viewer/presenter.js"></script>
+</body>
+</html>

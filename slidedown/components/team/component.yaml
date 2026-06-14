@@ -1,0 +1,31 @@
+name: team
+aliases: [people, owners]
+description: People cards with an avatar (initials or glyph, given as a prop).
+content: parse
+template: |
+  <div class="team">{{{content}}}</div>
+children:
+  person:
+    content: parse
+    props:
+      avatar:
+        type: text
+        default: ""
+      role:
+        type: text
+        default: ""
+      note:
+        type: text
+        default: ""
+    template: |
+      <div class="person"><span class="avatar">{{avatar}}</span><strong>{{{content}}}</strong>{{#role}}<span class="role">{{role}}</span>{{/role}}{{#note}}<span class="p-sub">{{note}}</span>{{/note}}</div>
+styles: |
+  .team { display: flex; gap: 26px; flex-wrap: wrap; justify-content: center; margin-top: 32px; }
+  .person { background: var(--color-card); border-radius: var(--radius-card); box-shadow: var(--shadow-sm); padding: 26px; width: 208px; text-align: center; }
+  .avatar {
+    display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: 50%;
+    background: var(--gradient-accent); color: var(--color-on-accent); font-weight: 700; font-size: 22px; margin: 0 auto 12px; letter-spacing: .04em;
+  }
+  .person strong { display: block; font-size: 17px; }
+  .person .role { display: block; font-size: 13.5px; color: var(--color-muted); margin-top: 3px; }
+  .person .p-sub { display: block; font-size: 12.5px; color: var(--color-muted); opacity: .8; margin-top: 7px; }

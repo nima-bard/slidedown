@@ -1,0 +1,45 @@
+name: flow
+aliases: [pipeline, process]
+description: Left-to-right diagram of nodes joined by arrows. scale 1 (default) · 2 · 3 grows the nodes.
+content: parse
+props:
+  scale:
+    type: enum
+    values: [1, 2, 3]
+    default: 1
+template: |
+  <div class="flow scale-{{scale}}">{{{content}}}</div>
+children:
+  node:
+    aliases: [step-node, stage]
+    content: parse
+    props:
+      icon:
+        type: text
+        default: ""
+      title:
+        type: text
+      focal:
+        type: flag
+    template: |
+      <div class="node{{#focal}} focal{{/focal}}">{{#icon}}<span class="ic">{{{icon}}}</span>{{/icon}}<strong>{{title}}</strong><span class="sub">{{{content}}}</span></div>
+styles: |
+  .flow { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+  .flow .node { position: relative; background: var(--color-card); border-radius: 16px; padding: 16px 20px; box-shadow: var(--shadow-sm); margin-right: 28px; min-width: 130px; }
+  .flow .node:last-child { margin-right: 0; }
+  .flow .node:not(:last-child)::after { content: "\2192"; position: absolute; right: -24px; top: 50%; transform: translateY(-50%); color: var(--color-accent); font-weight: 700; font-size: 20px; }
+  .flow .node .ic { font-size: 20px; display: block; margin-bottom: 4px; }
+  .flow .node strong { display: block; font-size: 16px; }
+  .flow .node .sub { display: block; font-size: 13px; color: var(--color-muted); margin-top: 2px; }
+  .flow .node.focal { background: var(--gradient-accent); color: var(--color-on-accent); box-shadow: var(--shadow-card); }
+  .flow .node.focal strong { color: var(--color-on-accent); }
+  .flow .node.focal .sub { color: rgba(255, 255, 255, .85); }
+  /* scale 2 and 3 grow the nodes relative to the default (1) */
+  .flow.scale-2 .node { padding: 22px 28px; min-width: 168px; }
+  .flow.scale-2 .node .ic { font-size: 28px; }
+  .flow.scale-2 .node strong { font-size: 19px; }
+  .flow.scale-2 .node .sub { font-size: 15px; }
+  .flow.scale-3 .node { padding: 30px 38px; min-width: 210px; }
+  .flow.scale-3 .node .ic { font-size: 38px; }
+  .flow.scale-3 .node strong { font-size: 23px; }
+  .flow.scale-3 .node .sub { font-size: 17px; }

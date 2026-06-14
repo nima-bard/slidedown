@@ -1,0 +1,21 @@
+name: group
+aliases: [box, stack]
+description: A layout wrapper that stacks and aligns any components together — e.g. [group align:center] … [/group]. Works for every component.
+content: parse
+selfLayout: true
+props:
+  align:
+    type: enum
+    values: [left, center, right]
+    default: left
+  gap:
+    type: number
+    default: 18
+template: |
+  <div class="group a-{{align}}" style="gap:{{gap}}px">{{{content}}}</div>
+styles: |
+  .group { display: flex; flex-direction: column; align-items: flex-start; margin-top: 24px; }
+  .group > * { margin-top: 0; }
+  .group.a-left { align-items: flex-start; text-align: left; }
+  .group.a-center { align-items: center; text-align: center; }
+  .group.a-right { align-items: flex-end; text-align: right; }

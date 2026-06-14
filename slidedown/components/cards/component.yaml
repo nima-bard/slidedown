@@ -1,0 +1,60 @@
+name: cards
+aliases: [boxes, features, options]
+description: A grid of icon cards.
+content: parse
+props:
+  cols:
+    type: enum
+    values: [2, 3, 4]
+    default: 3
+template: |
+  <div class="cards g{{cols}}">{{{content}}}</div>
+children:
+  card:
+    content: parse
+    props:
+      icon:
+        type: text
+        default: ""
+      title:
+        type: text
+      pill:
+        type: text
+        default: ""
+      state:
+        type: enum
+        values: [win, soon]
+      animated:
+        type: flag
+    template: |
+      <div class="card{{#state}} {{state}}{{/state}}{{#animated}} animated{{/animated}}">{{#pill}}<span class="pill">{{pill}}</span>{{/pill}}{{#icon}}<span class="ic">{{{icon}}}</span>{{/icon}}<h3>{{title}}</h3><p>{{{content}}}</p></div>
+styles: |
+  .cards { display: grid; gap: 22px; margin-top: 32px; text-align: left; }
+  .cards.g2 { grid-template-columns: repeat(2, 1fr); }
+  .cards.g3 { grid-template-columns: repeat(3, 1fr); }
+  .cards.g4 { grid-template-columns: repeat(4, 1fr); }
+  .card { position: relative; background: var(--color-card); border-radius: var(--radius-card); box-shadow: var(--shadow-sm); padding: 24px 26px; }
+  .card .ic {
+    width: 52px; height: 52px; border-radius: 15px; margin-bottom: 14px; display: flex; align-items: center; justify-content: center;
+    background: color-mix(in srgb, var(--color-accent) 14%, transparent); color: var(--color-accent); font-size: 22px;
+  }
+  .card h3 { font-size: clamp(17px, 1.6vw, 22px); font-weight: 600; margin-bottom: 6px; }
+  .card p { font-size: clamp(14px, 1.2vw, 16px); color: var(--color-muted); line-height: 1.5; }
+  .card .pill {
+    position: absolute; top: 18px; right: 18px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    background: color-mix(in srgb, var(--color-accent) 16%, transparent); color: var(--color-accent); padding: 4px 11px; border-radius: var(--radius-pill);
+  }
+  .card.win { background: var(--gradient-accent); color: var(--color-on-accent); box-shadow: var(--shadow-card); }
+  .card.win h3, .card.win p { color: var(--color-on-accent); }
+  .card.win .ic { background: rgba(255, 255, 255, .18); color: #fff; }
+  .card.win .pill { background: rgba(255, 255, 255, .22); color: #fff; }
+  .card.soon { background: color-mix(in srgb, var(--color-card) 70%, transparent); border: 1.5px dashed var(--color-line); box-shadow: none; }
+  /* `animated` flag: the card shows a sweeping highlight across its surface (plain CSS) */
+  .card.animated { position: relative; overflow: hidden; }
+  .card.animated::after {
+    content: ""; position: absolute; top: 0; left: -65%; width: 55%; height: 100%; pointer-events: none; z-index: 2;
+    background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, .55) 50%, transparent 100%);
+    transform: skewX(-18deg); animation: sd-card-sweep 2.6s ease-in-out infinite;
+  }
+  @keyframes sd-card-sweep { 0% { left: -65%; } 55%, 100% { left: 150%; } }
+  @media (prefers-reduced-motion: reduce) { .card.animated::after { display: none; } }

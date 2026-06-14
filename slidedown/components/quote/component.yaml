@@ -1,0 +1,22 @@
+name: quote
+aliases: [quotation, testimonial]
+description: A large quote card with attribution.
+content: parse
+props:
+  by:
+    type: text
+    default: ""
+template: |
+  <figure class="bigquote"><span class="q-mark">&ldquo;</span><blockquote>{{{content}}}</blockquote>{{#by}}<figcaption>{{by}}</figcaption>{{/by}}</figure>
+styles: |
+  .bigquote {
+    position: relative; margin-top: 40px; padding: 36px 46px 30px;
+    background: var(--color-card); border-radius: var(--radius-card); box-shadow: var(--shadow-card); text-align: left;
+  }
+  .q-mark {
+    position: absolute; top: -28px; left: 26px; font-size: 92px; line-height: 1; font-weight: 700;
+    background: var(--gradient-accent); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .bigquote blockquote { font-size: clamp(20px, 2.2vw, 30px); font-weight: 500; line-height: 1.45; }
+  .bigquote figcaption { margin-top: 14px; color: var(--color-muted); font-weight: 600; font-size: 15px; }
+  .bigquote figcaption::before { content: "\2014 "; }

@@ -1,0 +1,21 @@
+name: line-chart
+aliases: [linechart, trend]
+description: A simple themed line chart drawn as inline SVG. Data is [point label:… value:…] children.
+chart: line
+content: parse
+template: |
+  <div class="chart">{{{content}}}</div>
+children:
+  point:
+    aliases: [datum, dot]
+    content: none
+    props:
+      label:
+        type: text
+        default: ""
+      value:
+        type: number
+styles: |
+  .chart-line { stroke: var(--color-accent); stroke-linejoin: round; stroke-linecap: round; }
+  .chart-dot { fill: var(--color-card); stroke: var(--color-accent); stroke-width: 3; }
+  .chart-area { fill: var(--color-accent); opacity: .12; }

@@ -1,0 +1,61 @@
+/* verde — structural styling on top of base + components.
+   tokens.yaml carries the light & dark palettes (surface, ink, card, …); this
+   sheet adds the structural touches — hairline-bordered cards, a tinted+bordered
+   callout, twin glows, logo sizing — each with a dark-mode variant so it flips
+   on [@slide … dark]. */
+
+/* ---- raised surfaces: hairline border ---- */
+.card, .flow .node, .steps .step, .vside, .qa, .person, .metric, .pic, .bigquote, .chip {
+  border: 1px solid rgba(28, 28, 38, .06);
+}
+.card .ic { background: #e0f5ee; color: var(--color-accent); }
+.card.win { border: none; }
+.card.soon { border: 1.5px dashed rgba(28, 28, 38, .16); }
+
+/* ---- callout — tinted + bordered, not gradient-filled ---- */
+.callout {
+  background: #f0faf7; border: 1px solid var(--color-accent-2); color: var(--color-ink);
+  box-shadow: none; border-radius: 14px;
+}
+.callout strong { color: var(--color-ink); }
+.callout .co-ic { background: #cdeede; color: var(--color-accent); }
+.callout.tone-info { background: #e8f4f8; border-color: #a8d3df; color: #22606e; }
+.callout.tone-info .co-ic { background: #cde8f0; color: var(--color-info); }
+.callout.tone-tip { background: #f0faf7; border-color: var(--color-accent-2); color: #15803d; }
+.callout.tone-tip .co-ic { background: #cdeede; color: var(--color-accent); }
+.callout.tone-warn { background: #fdf4dc; border-color: #ecd28a; color: #7a5b00; }
+.callout.tone-warn .co-ic { background: #f5e3ab; color: #9a6800; }
+.callout.tone-warn strong { color: #7a5b00; }
+.callout.tone-key {
+  background: linear-gradient(150deg, var(--color-accent) 0%, #0f493a 100%);
+  border-color: transparent; color: #fff;
+}
+.callout.tone-key strong { color: #fff; }
+.callout.tone-key .co-ic { background: rgba(255, 255, 255, .22); color: #fff; }
+
+/* ---- twin radial glows for [@slide … glow] (brand top-right, info bottom-left) ---- */
+.slide.glow::before {
+  content: ""; position: absolute; width: 70vw; height: 70vw; max-width: 900px; max-height: 900px;
+  right: -16vw; top: -22vw; border-radius: 50%; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle, rgba(36, 166, 125, .34) 0%, rgba(36, 166, 125, 0) 66%);
+}
+.slide.glow::after {
+  content: ""; position: absolute; width: 46vw; height: 46vw; max-width: 600px; max-height: 600px;
+  left: -14vw; bottom: -20vw; border-radius: 50%; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle, rgba(52, 147, 169, .22) 0%, rgba(52, 147, 169, 0) 68%);
+}
+.slide.glow .inner { position: relative; z-index: 1; }
+
+/* ---- dark mode: borders, icons & callouts flip for dark slides ---- */
+.slide.dark .card, .slide.dark .flow .node, .slide.dark .steps .step, .slide.dark .vside,
+.slide.dark .qa, .slide.dark .person, .slide.dark .metric, .slide.dark .pic,
+.slide.dark .bigquote, .slide.dark .chip { border-color: rgba(255, 255, 255, .07); }
+.slide.dark .card .ic { background: rgba(73, 194, 151, .14); color: var(--color-accent-2); }
+.slide.dark .callout, .slide.dark .callout.tone-tip {
+  background: rgba(73, 194, 151, .12); border-color: rgba(73, 194, 151, .34); color: var(--color-ink);
+}
+.slide.dark .callout .co-ic { background: rgba(73, 194, 151, .2); color: var(--color-accent-2); }
+.slide.dark .callout.tone-info { background: rgba(52, 147, 169, .14); border-color: rgba(52, 147, 169, .4); color: #cfe6ee; }
+.slide.dark .callout.tone-warn { background: rgba(239, 183, 0, .12); border-color: rgba(239, 183, 0, .36); color: #f3e3b0; }
+.slide.dark .callout.tone-warn strong { color: #f3e3b0; }
+.slide.dark .callout.tone-key { color: #fff; }

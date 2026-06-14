@@ -1,0 +1,23 @@
+name: pyramid
+aliases: [hierarchy, layers]
+description: A layered pyramid — list layers from the apex (top, narrowest) down to the base (bottom, widest); each layer's width is computed from its position, so it works for any number of layers. Good for hierarchies and value stacks.
+content: parse
+indexed: true
+template: |
+  <div class="pyramid">{{{content}}}</div>
+children:
+  layer:
+    aliases: [level, tier]
+    content: parse
+    props:
+      title:
+        type: text
+        default: ""
+    template: |
+      <div class="pyr-layer" style="--i:{{i}};--n:{{n}}">{{#title}}<span class="pyr-title">{{title}}</span>{{/title}}{{#content}}<span class="pyr-text">{{{content}}}</span>{{/content}}</div>
+styles: |
+  .pyramid { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 32px; }
+  .pyr-layer { width: calc(38% + 62% * var(--i) / max(1, var(--n) - 1)); min-width: 180px; background: var(--gradient-accent); color: var(--color-on-accent); border-radius: 8px; padding: 13px 20px; text-align: center; display: flex; flex-direction: column; gap: 1px; }
+  .pyr-layer:nth-child(odd) { filter: brightness(.92); }
+  .pyr-title { font-weight: 800; font-size: clamp(15px, 1.5vw, 18px); }
+  .pyr-text { font-size: 13px; opacity: .9; }

@@ -1,0 +1,38 @@
+name: pie-chart
+aliases: [piechart, pie]
+description: A themed pie chart (inline SVG) with a coloured side legend, sized with `size`. With `animated`, it runs a looping spotlight — each slice pops outward while its legend row brightens, in turn, then settles as the next takes over, cycling through every slice forever.
+chart: pie
+content: parse
+props:
+  animated:
+    type: flag
+template: |
+  <div class="chart">{{{content}}}</div>
+children:
+  point:
+    aliases: [datum, slice]
+    content: none
+    props:
+      label:
+        type: text
+        default: ""
+      value:
+        type: number
+styles: |
+  .pie-chart { display: flex; gap: 44px; align-items: center; justify-content: center; flex-wrap: wrap; width: 100%; margin-top: 32px; }
+  .pie-svg { flex: 0 0 auto; width: clamp(240px, 46%, 460px); height: auto; overflow: visible; }
+  .pie-slice { transform-box: view-box; transform-origin: 150px 150px; stroke: var(--color-surface); stroke-width: 2; }
+
+  /* side legend — a column of swatch · label · share */
+  .pie-legend { list-style: none; display: grid; gap: 14px; text-align: left; flex: 1 1 200px; min-width: 180px; max-width: 320px; }
+  .pie-leg { display: flex; align-items: center; gap: 10px; font-size: 17px; }
+  .pie-sw { width: 14px; height: 14px; border-radius: 4px; flex: none; }
+  .pie-lab { color: var(--color-ink); }
+  .pie-pct { color: var(--color-muted); font-weight: 700; margin-left: auto; }
+
+  /* `animated`: a forever-looping spotlight. The per-slice-count keyframes and timing
+     (sd-pc-<n> / sd-pcl-<n>, and the .pc-n<n> rules) are emitted by the compiler; each
+     slice's pop direction (--dx/--dy) and turn (animation-delay) are set inline. */
+  @media (prefers-reduced-motion: reduce) {
+    .pie-slice, .pie-leg { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }

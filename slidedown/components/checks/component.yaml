@@ -1,0 +1,28 @@
+name: checks
+aliases: [checklist, benefits]
+description: A tick list; four or more items flow into two columns.
+content: parse
+template: |
+  <div class="checks">{{{content}}}</div>
+children:
+  check:
+    content: parse
+    props:
+      title:
+        type: text
+      icon:
+        type: text
+        default: check
+    template: |
+      <div class="check"><span class="tick">{{{icon}}}</span><div class="tx"><strong>{{title}}</strong><span>{{{content}}}</span></div></div>
+styles: |
+  .checks { display: grid; gap: 16px; margin-top: 32px; text-align: left; grid-template-columns: 1fr 1fr; }
+  .check { display: flex; gap: 14px; align-items: flex-start; }
+  .check .tick {
+    flex: none; width: 30px; height: 30px; border-radius: 50%; margin-top: 2px;
+    background: color-mix(in srgb, var(--color-ok) 18%, transparent); color: var(--color-ok);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .check .tick svg { width: 17px; height: 17px; }
+  .check .tx strong { font-size: 17px; }
+  .check .tx span { display: block; font-size: 14px; color: var(--color-muted); margin-top: 2px; }

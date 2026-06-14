@@ -1,0 +1,45 @@
+# Slidedown token schema — the contract every theme satisfies.
+#
+# Mode-invariant tokens (font, gradient, radius, space, and the brand/semantic
+# colours) sit at the top level. The per-mode colours and shadows live in the
+# theme's `light:` and `dark:` blocks. The compiler emits the light set at
+# `:root` and the dark set scoped to dark-mode slides, so a slide's mode swaps
+# the whole palette — cards, text and surface flip together.
+#
+# Each entry is  token: <type>.  A theme is valid when its top level + `light`
+# block together provide every token below; the `dark` block overrides the
+# per-mode ones.
+
+font:
+  base: font
+  mono: font
+gradient:
+  accent: gradient
+radius:
+  card: length
+  pill: length
+  chip: length
+space:
+  line: number
+  gap: length
+
+color:
+  # mode-invariant brand / semantic colours (top-level `color:` in a theme)
+  accent: color
+  accent-2: color
+  on-accent: color
+  ok: color
+  warn: color
+  info: color
+  danger: color
+  deep: color         # an always-dark surface (panels, code, formula)
+  # per-mode colours (a theme provides these under `light.color` / `dark.color`)
+  surface: color      # the slide background
+  ink: color          # primary text
+  muted: color        # secondary text
+  line: color         # hairlines / borders
+  card: color         # raised surface
+
+shadow:               # per-mode (under `light.shadow` / `dark.shadow`)
+  card: shadow
+  sm: shadow

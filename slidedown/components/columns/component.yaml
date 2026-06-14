@@ -1,0 +1,23 @@
+name: columns
+aliases: [cols]
+description: Divides the slide into vertical columns — one [column] child per column.
+content: parse
+template: |
+  <div class="columns">{{{content}}}</div>
+children:
+  column:
+    aliases: [col]
+    content: parse
+    selfLayout: true
+    props:
+      size:
+        type: number
+      align:
+        type: enum
+        values: [left, center, right]
+    template: |
+      <div class="column" style="{{#size}}flex:0 0 {{size}}%;{{/size}}{{#align}}text-align:{{align}};{{/align}}">{{{content}}}</div>
+styles: |
+  .columns { display: flex; gap: 50px; align-items: center; margin-top: 32px; }
+  .column { flex: 1; min-width: 0; }
+  @media (max-width: 900px) { .columns { flex-direction: column; gap: 28px; } .column { flex: 1 1 auto !important; } }

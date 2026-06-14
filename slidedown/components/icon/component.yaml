@@ -1,0 +1,19 @@
+name: icon
+aliases: [heroicon, glyph]
+description: A named icon from the deck's icon pack (front-matter `icons:`), e.g. [icon name:cog size:40 /]. Void; inherits text colour unless `color:` is set.
+content: none
+selfLayout: true
+props:
+  name:
+    type: text
+  size:
+    type: number
+    default: 28
+  color:
+    type: token
+    default: ""
+template: |
+  <span class="icon" style="width:{{size}}px; height:{{size}}px;{{#color}} color:var(--color-{{color}});{{/color}}">{{{svg}}}</span>
+styles: |
+  .icon { display: inline-flex; vertical-align: middle; flex: none; }
+  .icon svg { width: 100%; height: 100%; }

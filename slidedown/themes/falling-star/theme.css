@@ -1,0 +1,42 @@
+/* falling-star — a starry-night-style "falling star" painting IS the sky, with its
+   own image per mode (--sky): a pastel dawn for LIGHT, a deep night for DARK. A light
+   top-weighted scrim keeps text legible; frosted-glass cards float over the swirls;
+   handwriting is Caveat. Standard CSS, fully offline — images + font are copied in. */
+
+/* Caveat (OFL) bundled from themes/falling-star/assets/ → output/assets/. Variable 400–700. */
+@font-face {
+  font-family: 'Caveat';
+  src: url('assets/caveat.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Caveat's x-height is small — normalize text up across the deck with one lever.
+   Bump toward 0.58 for larger, 0.46 for smaller. */
+body { font-size-adjust: 0.54; }
+
+/* ---- the canvas: a per-mode falling-star painting (dawn / night) + a light,
+   top-weighted scrim so headings stay legible without dulling the art ---- */
+.slide {
+  background-image: var(--scrim), var(--sky);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+/* prose sits straight on the painting; a faint per-mode halo keeps it legible */
+.slide .inner { text-shadow: var(--textshadow); }
+
+/* ---- frosted-glass cards floating over the swirls ---- */
+.card, .kpi, .st-row, .ep, .arch-box, .plan, .delta, .callout, .metric, .badge,
+.ms-box, .vside, .qa, .person, .pic {
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 16px 44px -22px rgba(0, 0, 0, .55);
+}
+.card, .kpi, .ep, .arch-box, .delta, .plan, .metric {
+  border: 1px solid var(--color-line);
+}
+
+/* the accent gradient is light gold here, so flip the win-card's icon chip + pill
+   (the cards component fills them white) to dark so they read on it */
+.card.win .ic, .card.win .pill { background: rgba(20, 12, 2, .16); color: var(--color-on-accent); }

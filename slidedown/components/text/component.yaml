@@ -1,0 +1,39 @@
+name: text
+aliases: [span, fmt]
+description: Styled inline or block text — the only extra-formatting primitive.
+content: parse
+props:
+  color:
+    type: token
+  filled:
+    type: token
+  align:
+    type: enum
+    values: [left, center, right]
+  border:
+    type: enum
+    values: [none, thin, thick, accent]
+  weight:
+    type: enum
+    values: [regular, medium, semibold, bold]
+  gradient:
+    type: flag
+  underline:
+    type: flag
+template: |
+  <span class="text{{#align}} a-{{align}}{{/align}}{{#border}} b-{{border}}{{/border}}{{#weight}} w-{{weight}}{{/weight}}{{#gradient}} grad{{/gradient}}{{#underline}} u{{/underline}}" style="{{#color}}color:var(--color-{{color}});{{/color}}{{#filled}}background:var(--color-{{filled}});padding:.4em .7em;border-radius:var(--radius-chip);{{/filled}}">{{{content}}}</span>
+styles: |
+  .text { }
+  .text.a-center { display: block; text-align: center; }
+  .text.a-right  { display: block; text-align: right; }
+  .text.a-left   { display: block; text-align: left; }
+  .text.w-medium { font-weight: 500; }
+  .text.w-semibold { font-weight: 600; }
+  .text.w-bold { font-weight: 700; }
+  .text.grad {
+    background: var(--gradient-accent); -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .text.u { text-decoration: underline; text-decoration-color: var(--color-accent); text-underline-offset: .15em; }
+  .text.b-thin  { border: 1px solid var(--color-line); border-radius: var(--radius-chip); padding: .35em .7em; display: inline-block; }
+  .text.b-thick { border: 3px solid var(--color-accent); border-radius: var(--radius-chip); padding: .35em .7em; display: inline-block; }
+  .text.b-accent { border: 2px solid var(--color-accent); border-radius: var(--radius-chip); padding: .35em .7em; display: inline-block; }

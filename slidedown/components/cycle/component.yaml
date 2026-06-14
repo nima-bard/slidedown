@@ -1,0 +1,30 @@
+name: cycle
+aliases: [loop, circular]
+description: A circular process — stages arranged around a ring with a looping icon in the centre. Each stage's position is computed from its index, so it adapts to any count (best 3–6). List stages clockwise from the top.
+content: parse
+indexed: true
+props:
+  icon:
+    type: text
+    default: arrow-path
+template: |
+  <div class="cycle">{{{content}}}<span class="cyc-hub">{{{icon}}}</span></div>
+children:
+  stage:
+    aliases: [step, phase]
+    content: parse
+    props:
+      title:
+        type: text
+        default: ""
+    template: |
+      <div class="cyc-stage" style="--i:{{i}};--n:{{n}}"><span class="cyc-num">{{i1}}</span>{{#title}}<span class="cyc-title">{{title}}</span>{{/title}}{{#content}}<span class="cyc-text">{{{content}}}</span>{{/content}}</div>
+styles: |
+  .cycle { --cyc-r: 150px; position: relative; width: 440px; height: 440px; max-width: 100%; margin: 16px auto; }
+  .cycle::before { content: ""; position: absolute; inset: 92px; border: 2px dashed color-mix(in srgb, var(--color-accent) 45%, transparent); border-radius: 50%; }
+  .cyc-hub { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 58px; height: 58px; color: var(--color-accent); }
+  .cyc-hub svg { width: 100%; height: 100%; }
+  .cyc-stage { position: absolute; top: 50%; left: 50%; width: 156px; --a: calc(360deg / var(--n) * var(--i)); transform: translate(-50%, -50%) rotate(var(--a)) translateY(calc(-1 * var(--cyc-r))) rotate(calc(-1 * var(--a))); display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+  .cyc-num { width: 30px; height: 30px; border-radius: 50%; background: var(--gradient-accent); color: var(--color-on-accent); font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow-sm); }
+  .cyc-title { font-weight: 700; font-size: 16px; color: var(--color-ink); }
+  .cyc-text { font-size: 13px; color: var(--color-muted); line-height: 1.35; }

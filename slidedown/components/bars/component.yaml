@@ -1,0 +1,31 @@
+name: bars
+aliases: [progress, meters]
+description: Labelled progress bars (0–100). A bar with the `animated` flag shines.
+content: parse
+template: |
+  <div class="bars">{{{content}}}</div>
+children:
+  bar:
+    content: parse
+    props:
+      value:
+        type: number
+      animated:
+        type: flag
+    template: |
+      <div class="meter{{#animated}} animated{{/animated}}"><div class="top"><span>{{{content}}}</span><span class="pct">{{value}}%</span></div><div class="bar"><span style="width:{{value}}%"></span></div></div>
+styles: |
+  .bars { margin-top: 32px; display: grid; gap: 22px; text-align: left; }
+  .meter .top { display: flex; justify-content: space-between; align-items: baseline; font-weight: 600; font-size: 15px; margin-bottom: 9px; }
+  .meter .pct { font-size: 22px; font-weight: 700; color: var(--color-accent); }
+  .meter .bar { height: 14px; border-radius: var(--radius-pill); background: var(--color-line); overflow: hidden; }
+  .meter .bar > span { display: block; height: 100%; border-radius: var(--radius-pill); background: var(--gradient-accent); }
+  /* `animated` flag: the fill shows a sweeping highlight (plain CSS) */
+  .meter.animated .bar > span { position: relative; overflow: hidden; }
+  .meter.animated .bar > span::after {
+    content: ""; position: absolute; top: 0; left: -65%; width: 55%; height: 100%; pointer-events: none;
+    background: linear-gradient(100deg, transparent 0%, rgba(255, 255, 255, .6) 50%, transparent 100%);
+    transform: skewX(-18deg); animation: sd-bar-sweep 2.6s ease-in-out infinite;
+  }
+  @keyframes sd-bar-sweep { 0% { left: -65%; } 55%, 100% { left: 150%; } }
+  @media (prefers-reduced-motion: reduce) { .meter.animated .bar > span::after { display: none; } }

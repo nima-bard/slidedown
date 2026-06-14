@@ -1,0 +1,8 @@
+name: html
+aliases: [raw, embed]
+description: Escape hatch — content is emitted verbatim, untouched by the theme.
+content: raw
+template: |
+  {{{content}}}
+styles: |
+  /* html has no styles of its own */
