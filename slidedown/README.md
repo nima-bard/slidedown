@@ -35,7 +35,7 @@ slidedown/
 ├─ icons/<pack>.yaml       ← icon packs (Heroicons outline + `…-solid` filled, 580+ glyphs)
 ├─ base.css                ← structural + typographic layer (reads token custom properties)
 ├─ viewer/                 ← the player runtime (nav, transitions, notes, remote) — copied into every deck
-└─ examples/demo.sd        ← a sample deck (theme: falling-star; exercises all 45 components)
+└─ examples/demo.sd        ← a sample deck (theme: falling-star; exercises all 46 components)
 ```
 
 ## How it fits together

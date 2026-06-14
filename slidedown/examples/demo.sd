@@ -274,7 +274,9 @@ Decks should be written, not dragged.
 
 [text weight:semibold align:center]Adoption by team[/text]
 
-[bar-chart size:96 align:center]
+[void scale:1 /]
+
+[bar-chart animated size:96 align:center]
   [point label:Platform value:34]
   [point label:Payments value:58]
   [point label:Risk value:41]
@@ -286,7 +288,7 @@ Decks should be written, not dragged.
 
 [text weight:semibold align:center]Decks shipped per month[/text]
 
-[line-chart size:96 align:center]
+[line-chart animated size:96 align:center]
   [point label:Jan value:8]
   [point label:Feb value:17]
   [point label:Mar value:26]

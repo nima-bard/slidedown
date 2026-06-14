@@ -11,7 +11,7 @@ with its own props — there is no shared item or `|`-field syntax (manifesto
 §4.4). Each entry below therefore lists the component's **children** (if any) and
 **props**. Every component *also* accepts the shared props.
 
-> **All 45 components below are implemented** — one
+> **All 46 components below are implemented** — one
 > `components/<name>/component.yaml` each — plus the `@slide` / `@subtitle` /
 > `@note` / `@instruction` directives. `examples/demo.sd` exercises every one,
 > and all three themes (`aurora`, `verde`, `falling-star`) render them from token
@@ -378,10 +378,11 @@ to centre it. They scale crisply to whatever width you give them.
 
 ### `bar-chart`  · aliases: `barchart`, `column-chart`
 A themed bar chart drawn as inline SVG; each bar takes a distinct token colour (the same palette the pie cycles).
+- **Props:** `animated` (flag) — the bars grow from the baseline (value 0 → value), staggered, **once when the slide renders** (and again whenever the slide is shown), not a continuous loop.
 - **Child — `point`** (alias `datum`): a data point. Props: `label`, `value`.
 
 ```slidedown
-[bar-chart]
+[bar-chart animated]
   [point label:Q1 value:30]
   [point label:Q2 value:52]
   [point label:Q3 value:46]
@@ -390,10 +391,11 @@ A themed bar chart drawn as inline SVG; each bar takes a distinct token colour (
 
 ### `line-chart`  · aliases: `linechart`, `trend`
 A themed line chart drawn as inline SVG — a line, dots and a soft area fill.
+- **Props:** `animated` (flag) — the line, area and dots rise together from the baseline (value 0 → value) **once when the slide renders** (and again whenever the slide is shown).
 - **Child — `point`** (alias `datum`): a data point. Props: `label`, `value`.
 
 ```slidedown
-[line-chart]
+[line-chart animated]
   [point label:Jan value:12]
   [point label:Feb value:30]
   [point label:Mar value:24]
@@ -572,6 +574,21 @@ centred or right-aligned).
 [/group]
 ```
 
+### `void`  · aliases: `spacer`, `space`, `vspace`
+A vertical spacer — pure empty space between elements, for breathing room or to push
+content down. Void — self-closes.
+- **Children:** none. **Props:** `scale` (how many lines of blank space — `1`, `2`, `3`, …; default `1`, where one line ≈ one body text line). Ignores the shared placement props.
+
+```slidedown
+A line of intro.
+
+[void scale:2 /]
+
+[cards cols:3]
+  [card icon:bolt title:One] … [/card]
+[/cards]
+```
+
 ---
 
 ## Meta & tool directives
@@ -620,5 +637,5 @@ deck.
 | Charts | `bar-chart` · `line-chart` · `pie-chart` · `heatmap` | `point` · `hrow` · `cell` |
 | Evidence | `table` · `compare` · `code` · `formula` · `example` · `api` | `endpoint` |
 | Media | `image` · `html` · `logo` · `icon` | — |
-| Layout | `columns` · `group` | `column` |
+| Layout | `columns` · `group` · `void` | `column` |
 | Meta | `meta` · `@note` · `@instruction` | — |

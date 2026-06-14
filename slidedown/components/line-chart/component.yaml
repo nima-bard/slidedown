@@ -1,8 +1,11 @@
 name: line-chart
 aliases: [linechart, trend]
-description: A simple themed line chart drawn as inline SVG. Data is [point label:… value:…] children.
+description: A simple themed line chart drawn as inline SVG. Data is [point label:… value:…] children. The `animated` flag grows the line up from the baseline (value 0 → value) once when the slide renders.
 chart: line
 content: parse
+props:
+  animated:
+    type: flag
 template: |
   <div class="chart">{{{content}}}</div>
 children:
@@ -19,3 +22,13 @@ styles: |
   .chart-line { stroke: var(--color-accent); stroke-linejoin: round; stroke-linecap: round; }
   .chart-dot { fill: var(--color-card); stroke: var(--color-accent); stroke-width: 3; }
   .chart-area { fill: var(--color-accent); opacity: .12; }
+
+  /* `animated` flag: the line + area + dots (grouped by the compiler into
+     `.chart-rise-marks`) rise together from the baseline once, when the slide renders.
+     Same baseline origin (260) as bar-chart; reuses the sd-chart-rise keyframes bundled
+     from the bar-chart manifest. The `.slide.active` trigger replays it on each view. */
+  .chart-svg.chart-rise .chart-rise-marks { transform: scaleY(0); transform-box: view-box; transform-origin: 0 260px; }
+  .slide.active .chart-svg.chart-rise .chart-rise-marks { animation: sd-chart-rise .85s cubic-bezier(.22, 1, .36, 1) both; }
+  @media (prefers-reduced-motion: reduce) {
+    .chart-svg.chart-rise .chart-rise-marks { transform: none !important; animation: none !important; }
+  }

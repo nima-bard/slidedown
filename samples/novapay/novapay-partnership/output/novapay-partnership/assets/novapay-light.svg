@@ -1,0 +1,23 @@
+<svg width="274" height="274" viewBox="119 104 274 274" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NovaPay mark">
+  <mask id="np-cut-light" maskUnits="userSpaceOnUse" x="0" y="0" width="512" height="512">
+    <rect x="0" y="0" width="512" height="512" fill="#ffffff"/>
+    <!-- carve a channel along every facet seam to open the inner voids -->
+    <g fill="none" stroke="#000000" stroke-width="14" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M122 170L220 112L256 132L158 190V302L122 281V170Z"/>
+      <path d="M390 170L292 112L256 132L354 190V302L390 281V170Z"/>
+      <path d="M158 213L194 192V292L256 328L318 292V192L354 213V314L256 371L158 314V213Z"/>
+      <path d="M220 112L256 132V287L220 287Z"/>
+      <path d="M292 112L256 132V287L292 287Z"/>
+    </g>
+    <path d="M220 308L256 328L292 308L256 287L220 308Z" fill="#000000"/>
+  </mask>
+  <g mask="url(#np-cut-light)">
+    <!-- frame -->
+    <path d="M122 170L220 112L256 132L158 190V302L122 281V170Z" fill="#2b2350"/>
+    <path d="M390 170L292 112L256 132L354 190V302L390 281V170Z" fill="#2b2350"/>
+    <path d="M158 213L194 192V292L256 328L318 292V192L354 213V314L256 371L158 314V213Z" fill="#2b2350"/>
+    <!-- core blades -->
+    <path d="M220 112L256 132V287L220 287Z" fill="#7c3aed"/>
+    <path d="M292 112L256 132V287L292 287Z" fill="#7c3aed"/>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+name: void
+aliases: [spacer, space, vspace]
+description: A vertical spacer — pure empty space between elements. `scale` is how many lines of blank space to insert (1, 2, 3, …; default 1), where one line ≈ one body text line. Void — self-closing, e.g. [void scale:2 /].
+content: none
+selfLayout: true
+props:
+  scale:
+    type: number
+    default: 1
+template: |
+  <div class="void" style="height:calc({{scale}} * var(--void-line))" aria-hidden="true"></div>
+styles: |
+  /* A pure vertical spacer: scale × one line of blank space, added to the normal flow.
+     --void-line ≈ one body reading line (font clamp(18,1.9vw,24) × line-height 1.5), so
+     [void scale:2] inserts roughly two blank text lines. selfLayout: it opts out of the
+     size/align wrapper — it IS spacing, so shared placement props don't apply. */
+  .void { --void-line: clamp(27px, 2.85vw, 36px); width: 100%; flex: none; pointer-events: none; }

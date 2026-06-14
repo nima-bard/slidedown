@@ -1,54 +1,45 @@
 :root{
-  --color-accent: #f1a836;
-  --color-accent-2: #e07a2a;
-  --color-card: rgba(255,255,255,.5);
-  --color-danger: #e85a6f;
-  --color-deep: #160e34;
-  --color-info: #5b86e0;
-  --color-ink: #36296a;
-  --color-line: rgba(54,41,106,.18);
-  --color-muted: #6f6499;
-  --color-ok: #1fa874;
-  --color-on-accent: #1b3270;
-  --color-surface: #eee8fb;
-  --color-warn: #d4912a;
-  --font-base: 'Caveat', 'Bradley Hand', 'Segoe Print', 'Comic Sans MS', cursive;
+  --color-accent: #7c3aed;
+  --color-accent-2: #c026d3;
+  --color-card: #ffffff;
+  --color-danger: #ef4444;
+  --color-deep: #1e1733;
+  --color-info: #2563eb;
+  --color-ink: #2b2350;
+  --color-line: #ece9f6;
+  --color-muted: #857fa6;
+  --color-ok: #16a34a;
+  --color-on-accent: #ffffff;
+  --color-surface: linear-gradient(135deg, #ece9fe 0%, #e7ecfb 45%, #e2effb 100%);
+  --color-warn: #f59e0b;
+  --font-base: 'Poppins', 'Segoe UI', system-ui, -apple-system, sans-serif;
   --font-mono: 'SFMono-Regular', Consolas, monospace;
-  --gradient-accent: linear-gradient(125deg, #e07a2a 0%, #f1a836 52%, #f8cf6e 100%);
-  --radius-card: 26px;
+  --gradient-accent: linear-gradient(120deg, #7c3aed 0%, #c026d3 100%);
+  --radius-card: 24px;
   --radius-chip: 14px;
   --radius-pill: 999px;
-  --scrim: linear-gradient(180deg, rgba(250,247,255,.64) 0%, rgba(249,246,255,.52) 55%, rgba(250,247,255,.56) 100%);
-  --shadow-card: 0 26px 54px -22px rgba(60,45,120,.4);
-  --shadow-sm: 0 14px 30px -16px rgba(60,45,120,.3);
-  --sky: url('assets/sky-dawn.png');
+  --shadow-card: 0 28px 60px -22px rgba(70,45,120,.45);
+  --shadow-sm: 0 14px 30px -16px rgba(70,45,120,.35);
   --space-gap: 22px;
-  --space-line: 1.55;
-  --textshadow: 0 1px 3px rgba(255,255,255,.72);
+  --space-line: 1.5;
 }
 .slide.dark, body:has(.slide.dark.active), .mode-dark{
-  --color-card: rgba(24,16,52,.5);
-  --color-ink: #f4ecd8;
-  --color-line: rgba(255,255,255,.14);
-  --color-muted: #bcb2da;
-  --color-surface: #120c30;
-  --scrim: linear-gradient(180deg, rgba(7,5,24,.64) 0%, rgba(9,7,28,.54) 55%, rgba(9,7,28,.58) 100%);
-  --shadow-card: 0 30px 60px -24px rgba(0,0,0,.7);
-  --shadow-sm: 0 16px 34px -18px rgba(0,0,0,.55);
-  --sky: url('assets/sky-night.png');
-  --textshadow: 0 1px 4px rgba(0,0,0,.62);
+  --color-card: #2c2350;
+  --color-ink: #ffffff;
+  --color-line: rgba(255,255,255,.16);
+  --color-muted: #b9b0d9;
+  --color-surface: linear-gradient(135deg, #231b46 0%, #321d56 55%, #421740 100%);
+  --shadow-card: 0 28px 60px -22px rgba(0,0,0,.55);
+  --shadow-sm: 0 14px 30px -16px rgba(0,0,0,.45);
 }
 .mode-light{
-  --color-card: rgba(255,255,255,.5);
-  --color-ink: #36296a;
-  --color-line: rgba(54,41,106,.18);
-  --color-muted: #6f6499;
-  --color-surface: #eee8fb;
-  --scrim: linear-gradient(180deg, rgba(250,247,255,.64) 0%, rgba(249,246,255,.52) 55%, rgba(250,247,255,.56) 100%);
-  --shadow-card: 0 26px 54px -22px rgba(60,45,120,.4);
-  --shadow-sm: 0 14px 30px -16px rgba(60,45,120,.3);
-  --sky: url('assets/sky-dawn.png');
-  --textshadow: 0 1px 3px rgba(255,255,255,.72);
+  --color-card: #ffffff;
+  --color-ink: #2b2350;
+  --color-line: #ece9f6;
+  --color-muted: #857fa6;
+  --color-surface: linear-gradient(135deg, #ece9fe 0%, #e7ecfb 45%, #e2effb 100%);
+  --shadow-card: 0 28px 60px -22px rgba(70,45,120,.45);
+  --shadow-sm: 0 14px 30px -16px rgba(70,45,120,.35);
 }
 
 /* base */
@@ -726,70 +717,18 @@ body:has(.slide.dark.active) .brand-logo.dm { display: inline-block; }
 }
 .vs-arrow svg { width: 28px; height: 28px; }
 
-/* void */
-/* A pure vertical spacer: scale × one line of blank space, added to the normal flow.
-   --void-line ≈ one body reading line (font clamp(18,1.9vw,24) × line-height 1.5), so
-   [void scale:2] inserts roughly two blank text lines. selfLayout: it opts out of the
-   size/align wrapper — it IS spacing, so shared placement props don't apply. */
-.void { --void-line: clamp(27px, 2.85vw, 36px); width: 100%; flex: none; pointer-events: none; }
-
 /* pie-chart spotlight (generated per slice-count) */
-@keyframes sd-pc-4 {
+@keyframes sd-pc-3 {
   0% { transform: translate(0,0) scale(1); opacity: .6; animation-timing-function: cubic-bezier(.2,.7,.3,1); }
-  2.5% { transform: translate(var(--dx,0),var(--dy,0)) scale(1.08); opacity: 1; animation-timing-function: linear; }
-  22.5% { transform: translate(var(--dx,0),var(--dy,0)) scale(1.08); opacity: 1; animation-timing-function: cubic-bezier(.7,0,.8,.3); }
-  25%, 100% { transform: translate(0,0) scale(1); opacity: .6; }
+  3.33% { transform: translate(var(--dx,0),var(--dy,0)) scale(1.08); opacity: 1; animation-timing-function: linear; }
+  30% { transform: translate(var(--dx,0),var(--dy,0)) scale(1.08); opacity: 1; animation-timing-function: cubic-bezier(.7,0,.8,.3); }
+  33.33%, 100% { transform: translate(0,0) scale(1); opacity: .6; }
 }
-@keyframes sd-pcl-4 {
+@keyframes sd-pcl-3 {
   0% { opacity: .4; transform: scale(1); }
-  5% { opacity: 1; transform: scale(1.04); }
-  20% { opacity: 1; transform: scale(1.04); }
-  25%, 100% { opacity: .4; transform: scale(1); }
+  6.67% { opacity: 1; transform: scale(1.04); }
+  26.67% { opacity: 1; transform: scale(1.04); }
+  33.33%, 100% { opacity: .4; transform: scale(1); }
 }
-.pie-chart.pc-n4 .pie-slice { animation: sd-pc-4 18s linear infinite backwards; }
-.pie-chart.pc-n4 .pie-leg { animation: sd-pcl-4 18s ease-in-out infinite backwards; transform-origin: left center; }
-
-/* theme */
-/* falling-star — a starry-night-style "falling star" painting IS the sky, with its
-   own image per mode (--sky): a pastel dawn for LIGHT, a deep night for DARK. A light
-   top-weighted scrim keeps text legible; frosted-glass cards float over the swirls;
-   handwriting is Caveat. Standard CSS, fully offline — images + font are copied in. */
-
-/* Caveat (OFL) bundled from themes/falling-star/assets/ → output/assets/. Variable 400–700. */
-@font-face {
-  font-family: 'Caveat';
-  src: url('assets/caveat.woff2') format('woff2');
-  font-weight: 400 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Caveat's x-height is small — normalize text up across the deck with one lever.
-   Bump toward 0.58 for larger, 0.46 for smaller. */
-body { font-size-adjust: 0.54; }
-
-/* ---- the canvas: a per-mode falling-star painting (dawn / night) + a light,
-   top-weighted scrim so headings stay legible without dulling the art ---- */
-.slide {
-  background-image: var(--scrim), var(--sky);
-  background-size: cover, cover;
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
-}
-/* prose sits straight on the painting; a faint per-mode halo keeps it legible */
-.slide .inner { text-shadow: var(--textshadow); }
-
-/* ---- frosted-glass cards floating over the swirls ---- */
-.card, .kpi, .st-row, .ep, .arch-box, .plan, .delta, .callout, .metric, .badge,
-.ms-box, .vside, .qa, .person, .pic {
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 16px 44px -22px rgba(0, 0, 0, .55);
-}
-.card, .kpi, .ep, .arch-box, .delta, .plan, .metric {
-  border: 1px solid var(--color-line);
-}
-
-/* the accent gradient is light gold here, so flip the win-card's icon chip + pill
-   (the cards component fills them white) to dark so they read on it */
-.card.win .ic, .card.win .pill { background: rgba(20, 12, 2, .16); color: var(--color-on-accent); }
-
+.pie-chart.pc-n3 .pie-slice { animation: sd-pc-3 13.5s linear infinite backwards; }
+.pie-chart.pc-n3 .pie-leg { animation: sd-pcl-3 13.5s ease-in-out infinite backwards; transform-origin: left center; }

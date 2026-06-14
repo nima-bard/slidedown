@@ -66,6 +66,7 @@ exist, and the structure each one styles, is the compiler's concern.
 ---
 title:       Payment links — what shipped   # presentation title (browser tab + title slide)
 theme:       aurora                          # a theme name under themes/
+accent:      "#45f3a6"                       # optional — override the theme's accent colour (quote the hex)
 transition:  slide                           # default slide entrance — fade | slide
 duration:    30                              # talk length in minutes (planning)
 font:        Inter                            # optional typeface override
@@ -82,6 +83,7 @@ author:      Platform Team                    # byline for the title slide
 |---|---|---|
 | `title` | presentation title | filename |
 | `theme` | the deck's theme — colours, fonts, component styling | first theme found |
+| `accent` | **optional** override of the theme's accent colour — any CSS colour (`"#45f3a6"`, `"rgb(...)"`, a name). Recolours the whole accent system: the accent, a derived secondary, the gradient, and (for a light accent) the on-accent text. Add `accent2` to set the gradient's second tone. **Quote the value** (`accent: "#45f3a6"`) — unquoted `# ` reads as a YAML comment. | theme's accent |
 | `transition` | default slide entrance — `fade` or `slide` | `fade` |
 | `duration` | intended length, in minutes | — |
 | `font` | typeface override | theme's font |
@@ -325,11 +327,12 @@ A [text color:accent weight:semibold]forgiving[/text] language: write `.sd`, com
 
 Implemented: the five-stage compiler; the token schema + three themes — `aurora`,
 `verde`, and `falling-star` (a painterly night/dawn theme with a bundled backdrop
-image and handwriting font) — each with **light & dark modes**; all 45 components
+image and handwriting font) — each with **light & dark modes**; all 46 components
 (see [`COMPONENTS.md`](COMPONENTS.md)); the directives
 `@slide`/`@subtitle`/`@note`/`@instruction`; the shared props `size`/`align`/`valign`
 plus `mode:dark|light` (flip one component to the other palette); an `animated` flag
-for `card`/`bar`/`phase`/`pie-chart`/`milestones`/`delta`/`plan`; an embedded Heroicons
+for `card`/`bar`/`phase`/`pie-chart`/`bar-chart`/`line-chart`/`milestones`/`delta`/`plan`
+(charts grow from zero on slide render; others run looping effects); an embedded Heroicons
 pack (outline + `…-solid` filled variants, 580+ glyphs) with `[icon]`; image +
 theme-asset (font/backdrop) bundling; the viewer; and a sample deck
 (`examples/demo.sd`) that exercises every component — all under `slidedown/`,

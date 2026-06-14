@@ -1,8 +1,11 @@
 name: bar-chart
 aliases: [barchart, column-chart]
-description: A simple themed bar chart drawn as inline SVG. Data is [point label:… value:…] children.
+description: A simple themed bar chart drawn as inline SVG. Data is [point label:… value:…] children. The `animated` flag grows the bars from the baseline (value 0 → value) once when the slide renders.
 chart: bar
 content: parse
+props:
+  animated:
+    type: flag
 template: |
   <div class="chart">{{{content}}}</div>
 children:
@@ -23,3 +26,21 @@ styles: |
   .chart-val { fill: var(--color-ink); font-weight: 700; }
   .chart-lbl { fill: var(--color-muted); }
   .chart-axis { stroke: var(--color-line); }
+
+  /* `animated` flag: a one-shot grow-from-zero that plays whenever the slide renders.
+     `.chart-rise` (set by the compiler on the <svg>) holds bars collapsed at the
+     baseline; the `.slide.active` rule animates them, so the rise replays each time the
+     slide is shown and charts on not-yet-reached slides stay collapsed. Origin Y is the
+     chart baseline (260 in the compiler's 640×300 viewBox); scaleY ignores the X origin.
+     Per-bar/per-value animation-delays (the stagger) are set inline by the compiler. The
+     keyframes below are shared with line-chart (CSS is bundled deck-wide). */
+  .chart-svg.chart-rise .chart-bar { transform: scaleY(0); transform-box: view-box; transform-origin: 0 260px; }
+  .slide.active .chart-svg.chart-rise .chart-bar { animation: sd-chart-rise .7s cubic-bezier(.22, 1, .36, 1) both; }
+  .chart-svg.chart-rise .chart-val { opacity: 0; }
+  .slide.active .chart-svg.chart-rise .chart-val { animation: sd-chart-fade .45s ease both; }
+  @keyframes sd-chart-rise { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+  @keyframes sd-chart-fade { from { opacity: 0; } to { opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .chart-svg.chart-rise .chart-bar { transform: none !important; animation: none !important; }
+    .chart-svg.chart-rise .chart-val { opacity: 1 !important; animation: none !important; }
+  }
