@@ -1,6 +1,7 @@
 # Compiled decks (generated, deterministic — rebuild with the compiler)
 output/
 build/
+decks/
 **/output/
 **/build/
 

@@ -19,8 +19,26 @@ Your job: take the context you were given, conceptualize it into the most expres
 slides the language allows, and produce a deck that **compiles with zero errors and
 zero unresolved notes**.
 
-Work from the repo root — the directory that contains `slidedown/`. All paths below are
-relative to it.
+**Work from the user's current directory** — the deck folder you create and its compiled
+build must land in **cwd**, not inside the Slidedown engine clone. **Never `cd` into the
+clone.** All `decks/<slug>/…` paths in this skill are relative to cwd.
+
+The engine, language docs, themes, and components live at a separate location — call it
+`$SLIDEDOWN_HOME`. Resolve it once at the start of every run:
+
+```bash
+# Inside a Slidedown clone, cwd already contains slidedown/, so SLIDEDOWN_HOME=.
+# Otherwise, derive it from the installed `slidedown` CLI (the install script symlinks
+# ~/.local/bin/slidedown → <SLIDEDOWN_HOME>/scripts/compile.sh).
+if [ -f slidedown/MANIFESTO.md ]; then
+  SLIDEDOWN_HOME="$PWD"
+else
+  SLIDEDOWN_HOME="$(dirname "$(dirname "$(readlink -f "$(command -v slidedown)")")")"
+fi
+```
+
+Use `$SLIDEDOWN_HOME` for **reads only** (language docs, components, samples). All
+**writes** (deck source, build output) go under cwd.
 
 ---
 
@@ -29,22 +47,21 @@ relative to it.
 Before writing a single `[tag]`, read these three in full — they are the source of
 truth and the language evolves, so never author from memory:
 
-1. `slidedown/MANIFESTO.md` — the language: document anatomy, front-matter, directives, slides/surfaces, components, shared props, columns, the compiler.
-2. `slidedown/COMPONENTS.md` — every component, its **exact props, children, aliases, and content mode**. Verify against this; do not invent props or children.
-3. `slidedown/README.md` — build mechanics and layout.
+1. `$SLIDEDOWN_HOME/slidedown/MANIFESTO.md` — the language: document anatomy, front-matter, directives, slides/surfaces, components, shared props, columns, the compiler.
+2. `$SLIDEDOWN_HOME/slidedown/COMPONENTS.md` — every component, its **exact props, children, aliases, and content mode**. Verify against this; do not invent props or children.
+3. `$SLIDEDOWN_HOME/slidedown/README.md` — build mechanics and layout.
 
 Then **discover what's actually installed** (the set grows over time — don't trust a hardcoded list):
 
 ```bash
-ls slidedown/themes/                              # available themes
-ls slidedown/components/                          # available components
-grep -oE '^[a-z][a-z0-9-]*:' slidedown/icons/heroicons-outline.yaml   # valid icon names
+ls $SLIDEDOWN_HOME/slidedown/themes/                              # available themes
+ls $SLIDEDOWN_HOME/slidedown/components/                          # available components
+grep -oE '^[a-z][a-z0-9-]*:' $SLIDEDOWN_HOME/slidedown/icons/heroicons-outline.yaml   # valid icon names
 ```
 
-Skim `samples/demo/demo.sd` (exercises every component) and
-`samples/demo/falling-star.sd` as worked references for real syntax and density.
-When unsure of a component's exact props, read its manifest:
-`slidedown/components/<name>/component.yaml`.
+Skim `$SLIDEDOWN_HOME/samples/demo/demo.sd` (exercises every component) as a worked
+reference for real syntax and density. When unsure of a component's exact props, read its
+manifest: `$SLIDEDOWN_HOME/slidedown/components/<name>/component.yaml`.
 
 ---
 
@@ -62,7 +79,7 @@ feature, docs, a change). Absorb it:
 ## Step 2 — Gather the essentials interactively
 
 Use **AskUserQuestion** with exactly these two questions (build the theme options from
-what `ls slidedown/themes/` actually returned — read each theme's `tokens.yaml` top
+what `ls $SLIDEDOWN_HOME/slidedown/themes/` actually returned — read each theme's `tokens.yaml` top
 comment for a one-line descriptor):
 
 - **Theme** — one option per installed theme. Current set (verify at runtime):
@@ -179,8 +196,12 @@ Authoring rules (the build will reject violations — get them right the first t
 
 ## Step 5 — Compile, and the zero-error guarantee
 
+Run the compile from **cwd** so the output lands next to the deck source:
+
 ```bash
-node slidedown/compiler/slidedown.js decks/<slug>/<slug>.sd --out decks/<slug>/build
+slidedown decks/<slug>/<slug>.sd --out decks/<slug>/build
+# Fallback if the `slidedown` CLI isn't on PATH:
+node "$SLIDEDOWN_HOME/slidedown/compiler/slidedown.js" decks/<slug>/<slug>.sd --out decks/<slug>/build
 ```
 
 The build **must** end at `[5/5] publish … built N slides` with **exit 0**. The compiler
