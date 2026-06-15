@@ -1,0 +1,247 @@
+---
+title: "NovaPay × GlobalFreight Connect"
+theme: neo
+transition: fade
+duration:   15
+brand: NovaPay
+logo:
+  light:    ./assets/novapay-light.svg
+  dark:     ./assets/novapay-dark.svg
+author:     "Strategy & Partnerships"
+---
+
+[@slide title glow dark] NovaPay
+[@subtitle] A strategic partnership with GlobalFreight Connect
+[@note] This is the executive decision deck. One ask: approve a phased rollout. Everything here builds to base-case 91% ROI and €136M of new revenue. [/@note]
+
+[logo size:24x* align:center /]
+
+[meta]
+  - **Prepared for** · Executive team
+  - **Subject** · Embedded cross-border payments for logistics SMEs
+  - **Decision** · Proceed — phased
+[/meta]
+
+[group align:center]
+  [chips]
+    [chip color:accent icon:globe-europe-africa]42 countries in reach[/chip]
+    [chip color:info icon:users]120,000 traders[/chip]
+    [chip color:ok icon:arrow-trending-up]€136M upside[/chip]
+  [/chips]
+[/group]
+
+[@slide glow] The proposal
+[@subtitle] One idea
+
+[statement kicker:"What we're deciding" by:"freight · suppliers · customs · invoices — one platform"]
+Put payments [text color:accent weight:semibold]inside the freight workflow[/text].
+[/statement]
+
+[@slide glow] Where NovaPay stands today
+[@subtitle] A profitable, growing base to build on
+[@note] We are not betting the company — we are extending a healthy business. Revenue grew 14% last year; merchants 17%. Retention of 89% means customers stay. [/@note]
+
+[columns]
+  [column size:38]
+    [delta value:"€72M" change:"+14% YoY revenue" dir:up label:"FY2025" accent animated]
+    €4.2B processed at a 14% EBITDA margin.
+    [/delta]
+  [/column]
+  [column size:62]
+    [scorecard]
+      [kpi value:"38,500" label:"Active merchants" change:"+17%" dir:up]
+      [kpi value:"€4.2B" label:"Payment volume"]
+      [kpi value:"89%" label:"Customer retention" change:"up" dir:up tone:ok]
+      [kpi value:"9" label:"Operating countries"]
+    [/scorecard]
+  [/column]
+[/columns]
+
+[@slide] Momentum is already compounding
+[@subtitle] Revenue, €M · 2022 → 2025
+
+[columns]
+  [column size:62]
+    [line-chart animated]
+      [point label:2022 value:39]
+      [point label:2023 value:52]
+      [point label:2024 value:63]
+      [point label:2025 value:72]
+    [/line-chart]
+  [/column]
+  [column size:38]
+    [delta value:"+85%" change:"revenue, 2022 → 2025" dir:up label:"Four-year growth" accent animated]
+    Merchants nearly doubled to 38,500.
+    [/delta]
+  [/column]
+[/columns]
+
+[@slide] The customer is asking for this
+[@subtitle] Survey of 3,500 SME exporters
+[@note] This is the demand signal. 71% want exactly what the partnership delivers; 64% would switch to get it. That de-risks adoption. [/@note]
+
+[bars animated]
+  [bar value:67 animated] call payments a major operational challenge [/bar]
+  [bar value:71] prefer one integrated logistics + payment solution [/bar]
+  [bar value:64] would switch providers for better workflow integration [/bar]
+  [bar value:48] already face payment delays of over a week [/bar]
+[/bars]
+
+[@slide] Riding a fast-growing market
+[@subtitle] Embedded finance market size, €B
+
+[columns]
+  [column size:64]
+    [bar-chart animated]
+      [point label:2024 value:108]
+      [point label:2025 value:132]
+      [point label:2026 value:162]
+      [point label:2027 value:198]
+      [point label:2028 value:241]
+    [/bar-chart]
+  [/column]
+  [column size:36]
+    [delta value:"22.1%" change:"CAGR, 2024 → 2028" dir:up label:"Embedded finance" accent animated]
+    €108B → €241B in four years.
+    [/delta]
+  [/column]
+[/columns]
+
+[@slide] What the partnership puts in one place
+[@subtitle] GlobalFreight Connect · 120,000 traders · 42 countries
+[@note] The product story in four tiles. The point of the callout: a single workflow, not four logins. [/@note]
+
+[cards cols:2]
+  [card icon:truck title:"Freight payments"] Pay carriers as shipments move. [/card]
+  [card icon:banknotes title:"Supplier settlements"] Settle suppliers across borders. [/card]
+  [card icon:document-currency-euro title:"Customs fees"] Clear duties without leaving the lane. [/card]
+  [card icon:document-text title:"Invoices"] Issue and reconcile in the same view. [/card]
+[/cards]
+
+[callout tone:key icon:puzzle-piece] One platform, one workflow — embedded where the work already happens. [/callout]
+
+[@slide dark] Why NovaPay wins
+[@subtitle] Customer satisfaction by provider, %
+[@note] The strategic insight of the whole deck: we are loved but small. Satisfaction is the moat; share is the upside. [/@note]
+
+[columns]
+  [column size:62]
+    [bar-chart animated]
+      [point label:NovaPay value:88]
+      [point label:TransactOne value:85]
+      [point label:PayFlow value:82]
+      [point label:FinBridge value:79]
+      [point label:Others value:76]
+    [/bar-chart]
+  [/column]
+  [column size:38]
+    [delta value:"#1" change:"satisfaction · 88%" dir:up label:"Highest of all providers" accent]
+    Yet only 7% market share.
+    [/delta]
+    [callout tone:tip] The gap between love and share is the prize. [/callout]
+  [/column]
+[/columns]
+
+[@slide] What it takes to launch
+[@subtitle] Total investment · €10.3M
+
+[columns]
+  [column size:58]
+    [pie-chart animated size:96]
+      [point label:"Marketing & enablement" value:3.9]
+      [point label:"Technology integration" value:3.4]
+      [point label:"Compliance & security" value:3.0]
+    [/pie-chart]
+  [/column]
+  [column size:42]
+    [badge value:"€10.3M"] one-time investment to go live [/badge]
+    [callout tone:info icon:shield-check] A third goes to compliance & security — non-negotiable for 42 markets. [/callout]
+  [/column]
+[/columns]
+
+[@slide glow] The return
+[@subtitle] Revenue contribution, €M · 2026 → 2030
+[@note] Hockey stick is real but earned — adoption compounds as more markets light up. €136M is the sum of the curve. [/@note]
+
+[columns]
+  [column size:62]
+    [line-chart animated]
+      [point label:2026 value:5.2]
+      [point label:2027 value:13.6]
+      [point label:2028 value:25.9]
+      [point label:2029 value:38.7]
+      [point label:2030 value:52.1]
+    [/line-chart]
+  [/column]
+  [column size:38]
+    [delta value:"€136M" change:"cumulative new revenue by 2030" dir:up label:"Base case" accent animated]
+    From €5.2M in year one.
+    [/delta]
+  [/column]
+[/columns]
+
+[@slide] Three ways it could play out
+[@subtitle] Even the conservative case clears the bar
+[@note] Anchor on the base case. Conservative still returns 42% — the downside is acceptable, the upside is large. [/@note]
+
+[compare]
+  | Scenario | Adoption | ROI | Payback | Proceed |
+  | Conservative | 35% | 42% | 3.8 yrs | y |
+  | *Base case | 52% | 91% | 2.6 yrs | y |
+  | Aggressive | 68% | 148% | 1.9 yrs | y |
+[/compare]
+
+[@slide dark] Risks, with eyes open
+[@subtitle] Probability · Impact
+[@note] We are not hiding the risks. The mitigation is the phased rollout — we prove adoption in pilots before committing the full spend. [/@note]
+
+[status]
+  [item state:risk title:"Regulatory change" owner:"Med · High"] new cross-border rules across markets [/item]
+  [item state:warn title:"Integration delays" owner:"Med · Med"] complex logistics workflows [/item]
+  [item state:warn title:"Competitive response" owner:"High · Med"] incumbents defend their share [/item]
+  [item state:risk title:"Slower adoption" owner:"Med · High"] SMEs are slow to switch tools [/item]
+[/status]
+
+[callout tone:warn icon:scale] A phased pilot caps exposure — we scale only on proven uptake. [/callout]
+
+[@slide] The upside beyond year one
+[@subtitle] What a successful rollout unlocks
+
+[cards cols:3]
+  [card icon:globe-europe-africa title:"33 new countries"] via the partner network. [/card]
+  [card icon:building-storefront title:"88,000 SMEs"] additional reach. [/card]
+  [card icon:arrow-trending-up title:"+35% volume" state:win] payment volume within five years. [/card]
+  [card icon:wallet title:"Embedded financing"] new products after adoption. [/card]
+  [card icon:link title:"Stickier retention"] workflow lock-in deepens loyalty. [/card]
+[/cards]
+
+[@slide] How we roll it out
+[@subtitle] Prove it small, then scale
+
+[timeline]
+  [phase when:"Phase 1" title:"Pilot markets" state:current animated] launch in lead countries [/phase]
+  [phase when:"Phase 2" title:"Adoption milestones"] expand on proven uptake [/phase]
+  [phase when:"Phase 3" title:"Scale to 42" state:future] full partner network [/phase]
+  [phase when:"Phase 4" title:"Embedded financing" state:future] new products on top [/phase]
+[/timeline]
+
+[@slide] The expected outcome
+[@subtitle] Base-case scenario
+[@note] This is the slide they will remember. Three numbers, one decision. [/@note]
+
+[metrics]
+  [metric value:"€136M"] cumulative new revenue [/metric]
+  [metric value:"91%"] projected ROI [/metric]
+  [metric value:"2.6 yrs"] payback period [/metric]
+[/metrics]
+
+[callout tone:key icon:trophy] Favourable market, proven demand, attractive returns — the case to proceed is strong. [/callout]
+
+[@slide closing] Proceed — phased
+[@subtitle] Approve a pilot-first rollout with clear adoption milestones
+
+[cta] Greenlight the GlobalFreight Connect partnership. [/cta]
+
+[void scale:2 /]
+
+[logo size:22x* align:center /]
