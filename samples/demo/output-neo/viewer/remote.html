@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Presenter Remote</title>
+<link rel="stylesheet" href="remote.css" />
+</head>
+<body>
+  <header>
+    <span id="counter">– / –</span>
+    <span id="status" class="off">connecting…</span>
+    <span class="spacer"></span>
+    <button id="fullscreen" type="button" title="Toggle fullscreen on the deck window">⛶ Fullscreen</button>
+  </header>
+  <main>
+    <nav id="slide-list" aria-label="Slides"></nav>
+    <section class="notes-pane">
+      <h1 id="slide-title">Waiting for the deck…</h1>
+      <div id="notes"><em>Open this window from the deck (press <b>R</b>) and keep the deck open.</em></div>
+      <p id="up-next"></p>
+    </section>
+  </main>
+  <footer>
+    <button id="prev" type="button">‹ Previous</button>
+    <button id="next" type="button">Next ›</button>
+  </footer>
+  <script src="remote.js"></script>
+</body>
+</html>

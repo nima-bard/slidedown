@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 180" width="420" height="180">
+  <rect width="420" height="180" rx="14" fill="#7c3aed"/>
+  <circle cx="330" cy="60" r="42" fill="#c026d3" opacity="0.85"/>
+  <text x="28" y="108" font-family="'Poppins', sans-serif" font-size="34" font-weight="700" fill="#ffffff">Slidedown</text>
+  <text x="28" y="140" font-family="'Poppins', sans-serif" font-size="16" fill="#e9deff">a framed local image</text>
+</svg>

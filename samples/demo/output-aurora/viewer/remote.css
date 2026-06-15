@@ -1,0 +1,65 @@
+/* Presenter shared runtime — speaker remote window. Neutral dark look so it
+   fits every deck theme; system fonts so it works offline. */
+:root {
+  --bg: #14141c; --panel: #1f1f2b; --line: #2c2c3a;
+  --ink: #f2f3f7; --muted: #9aa0b2; --accent: #4f8cff;
+  --ok: #3ecf8e; --bad: #ff6b6b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font: 15px/1.55 system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  background: var(--bg); color: var(--ink);
+  display: flex; flex-direction: column;
+}
+
+header {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 18px; border-bottom: 1px solid var(--line);
+}
+#counter { font-size: 18px; font-weight: 700; letter-spacing: .04em; min-width: 64px; }
+#status { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ok); }
+#status.off { color: var(--bad); }
+.spacer { flex: 1; }
+
+button {
+  font: inherit; color: var(--ink); background: var(--panel);
+  border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
+}
+button:hover { border-color: var(--muted); }
+
+#fullscreen { padding: 8px 14px; font-weight: 600; }
+
+main { flex: 1; display: grid; grid-template-columns: 290px 1fr; min-height: 0; }
+
+#slide-list {
+  overflow-y: auto; border-right: 1px solid var(--line);
+  padding: 10px; display: flex; flex-direction: column; gap: 3px;
+}
+#slide-list button {
+  display: flex; gap: 10px; align-items: baseline; text-align: left;
+  padding: 8px 10px; background: transparent; border: none; border-radius: 8px;
+  color: var(--muted);
+}
+#slide-list button:hover { background: var(--panel); color: var(--ink); }
+#slide-list button.active { background: var(--panel); color: var(--ink); box-shadow: inset 3px 0 0 var(--accent); }
+#slide-list .n { font-size: 12px; font-weight: 700; opacity: .6; min-width: 1.6em; }
+#slide-list .t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.notes-pane { padding: 22px 26px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+#slide-title { font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+#notes { flex: 1; font-size: 18px; line-height: 1.65; color: #d8dbe4; }
+#notes em { color: var(--muted); }
+#notes ul, #notes ol { padding-left: 1.3em; margin: .4em 0; }
+#up-next { color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); padding-top: 12px; }
+
+footer { display: flex; gap: 12px; padding: 14px 18px; border-top: 1px solid var(--line); }
+footer button { padding: 15px; font-size: 17px; font-weight: 700; border-radius: 12px; }
+#prev { flex: 1; }
+#next { flex: 2; background: var(--accent); border-color: var(--accent); color: #fff; }
+#next:hover { filter: brightness(1.08); }
+
+@media (max-width: 620px) {
+  main { grid-template-columns: 1fr; }
+  #slide-list { display: none; }
+}
